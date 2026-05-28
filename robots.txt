@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ttcd77.github.io/invoice-chaser-templates/sitemap.xml

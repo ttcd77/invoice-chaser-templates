@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5-Stage Invoice Follow-Up System — Email Templates That Get You Paid | Invoice Chaser</title>
+<meta name="description" content="Learn the 5-stage late payment follow-up system used by freelancers to recover unpaid invoices without burning client relationships. Includes email template frameworks, timing guide, and escalation strategy. Free guide from Invoice Chaser.">
+<meta property="og:title" content="5-Stage Invoice Follow-Up System: Email Templates That Get You Paid">
+<meta property="og:description" content="Stop chasing late payments without the awkwardness. A complete system for freelancers: gentle nudge to final notice, with email structures and timing strategy.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ttcd77.github.io/invoice-chaser-templates/guide.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="5-Stage Invoice Follow-Up System — Get Paid Without Burning Bridges">
+<meta name="twitter:description" content="5 escalating stages for following up on unpaid invoices. Email structures, timing, and psychology — free guide for freelancers and small business owners.">
+<link rel="canonical" href="https://ttcd77.github.io/invoice-chaser-templates/guide.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "5-Stage Invoice Follow-Up System: Email Templates That Get You Paid",
+  "description": "A complete framework for freelancers and small business owners to follow up on late payments without burning client relationships. Covers 5 escalating stages from gentle reminder to final notice, with email structures, timing strategy, and psychological principles.",
+  "author": {"@type": "Organization", "name": "Selfloom"},
+  "publisher": {"@type": "Organization", "name": "Selfloom"},
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "mainEntityOfPage": "https://ttcd77.github.io/invoice-chaser-templates/guide.html",
+  "about": {"@type": "Thing", "name": "Invoice Follow-Up System", "description": "A systematic approach to recovering late payments from clients using escalating email communication"}
+}
+</script>
+<style>
+:root {
+  --navy: #1a1a2e;
+  --navy-light: #16213e;
+  --red: #e94560;
+  --green: #0f9b5a;
+  --green-light: #e6f7ee;
+  --blue: #4a90d9;
+  --blue-light: #e8f1fb;
+  --yellow: #f0a500;
+  --yellow-light: #fef9e7;
+  --red-light: #fde8ec;
+  --gray-50: #f8f9fa;
+  --gray-100: #f1f3f5;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #adb5bd;
+  --gray-500: #6c757d;
+  --gray-700: #495057;
+  --gray-900: #212529;
+  --radius: 10px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: #f4f5f7;
+  color: var(--gray-900);
+  line-height: 1.75;
+  min-height: 100vh;
+}
+
+/* Nav */
+.nav { background: linear-gradient(135deg, var(--navy) 0%, #1f3460 100%); padding: 16px 32px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.nav a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+.nav a:hover { color: #fff; }
+.nav a.active { color: #fff; font-weight: 600; }
+.nav .brand { color: #fff; font-weight: 700; font-size: 16px; margin-right: auto; }
+
+/* Hero */
+.hero { background: linear-gradient(135deg, var(--navy) 0%, #1f3460 100%); color: #fff; padding: 60px 32px 80px; text-align: center; }
+.hero h1 { font-size: 36px; font-weight: 800; line-height: 1.25; max-width: 800px; margin: 0 auto 16px; }
+.hero p { font-size: 18px; opacity: 0.85; max-width: 640px; margin: 0 auto 32px; line-height: 1.6; }
+.hero .meta { font-size: 13px; opacity: 0.5; }
+
+.container { max-width: 720px; margin: -40px auto 80px; padding: 0 20px; position: relative; z-index: 1; }
+
+/* Content card */
+.content-card {
+  background: #fff; border-radius: var(--radius);
+  box-shadow: var(--shadow-lg); padding: 48px;
+}
+
+/* Problem intro */
+.problem-intro {
+  background: var(--red-light); border-left: 4px solid var(--red);
+  padding: 24px; border-radius: 0 var(--radius) var(--radius) 0;
+  margin-bottom: 40px;
+}
+.problem-intro p { font-size: 15px; color: #5a1a28; }
+
+/* Stage cards */
+.stage { margin-bottom: 48px; }
+.stage:last-child { margin-bottom: 0; }
+.stage-header {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
+}
+.stage-num {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 18px; color: #fff; flex-shrink: 0;
+}
+.stage-num.s1 { background: var(--green); }
+.stage-num.s2 { background: var(--blue); }
+.stage-num.s3 { background: var(--yellow); color: var(--gray-900); }
+.stage-num.s4 { background: #e67e22; }
+.stage-num.s5 { background: var(--red); }
+.stage-title { font-size: 22px; font-weight: 700; }
+.stage-timing { font-size: 13px; color: var(--gray-500); margin-top: 4px; }
+
+.stage-body { padding-left: 60px; }
+.stage-body p { margin-bottom: 16px; font-size: 15px; }
+.email-template {
+  background: var(--gray-50); border: 1px solid var(--gray-200);
+  border-radius: var(--radius); padding: 24px; margin: 16px 0;
+}
+.email-template .subject { font-weight: 600; font-size: 14px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--gray-200); }
+.email-template .subject span { color: var(--gray-500); font-weight: 400; }
+.email-template .body-text { font-size: 14px; color: var(--gray-700); white-space: pre-wrap; line-height: 1.6; }
+.key-principle { font-size: 13px; color: var(--gray-500); font-style: italic; margin-top: 12px; padding: 12px; background: var(--blue-light); border-radius: 6px; }
+
+/* CTA section */
+.cta-section {
+  margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--gray-200);
+  text-align: center;
+}
+.cta-section h2 { font-size: 24px; margin-bottom: 12px; }
+.cta-section p { color: var(--gray-500); margin-bottom: 24px; font-size: 15px; }
+.btn { display: inline-block; padding: 14px 32px; border-radius: 8px; font-weight: 600; font-size: 15px; text-decoration: none; transition: all 0.2s; cursor: pointer; }
+.btn-primary { background: var(--red); color: #fff; }
+.btn-primary:hover { background: #d13450; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(233,69,96,0.3); }
+.btn-secondary { background: var(--navy); color: #fff; margin-left: 12px; }
+.btn-secondary:hover { background: #0f1a3a; }
+
+/* Footer */
+.footer { text-align: center; padding: 40px 20px; color: var(--gray-500); font-size: 13px; }
+.footer a { color: var(--gray-500); }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .nav { padding: 12px 16px; gap: 12px; }
+  .hero { padding: 40px 16px 60px; }
+  .hero h1 { font-size: 26px; }
+  .content-card { padding: 28px 20px; }
+  .stage-body { padding-left: 0; }
+  .btn-secondary { margin-left: 0; margin-top: 12px; display: block; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="brand">Invoice Chaser</span>
+  <a href="index.html">Free Demo Tool</a>
+  <a href="guide.html" class="active">Follow-Up Guide</a>
+  <a href="buy.html">Get Template Pack — $9</a>
+</nav>
+
+<section class="hero">
+  <h1>How to Follow Up on Unpaid Invoices Without Burning Client Relationships</h1>
+  <p>The complete 5-stage system that turns late-paying clients into paid invoices — while keeping the relationship intact.</p>
+  <div class="meta">Published May 2026 · 8 min read · Invoice Chaser by Selfloom</div>
+</section>
+
+<div class="container">
+  <div class="content-card">
+
+    <div class="problem-intro">
+      <p><strong>If you're a freelancer, consultant, or small business owner, you know the feeling.</strong> You delivered the work. You sent the invoice. And now... silence. 82% of small business failures are tied to cash flow problems, and unpaid invoices are the biggest culprit. But chasing clients for money feels awkward, desperate, and sometimes even rude. This guide gives you a system that separates the process from the person — so you get paid without begging.</p>
+    </div>
+
+    <h2 style="font-size:20px;margin-bottom:24px">The 5-Stage Follow-Up System</h2>
+    <p style="margin-bottom:40px;color:var(--gray-500)">Each stage escalates gradually. The goal isn't to threaten — it's to make ignoring the invoice harder than paying it. Most clients pay by Stage 2 or 3.</p>
+
+    <!-- Stage 1 -->
+    <div class="stage">
+      <div class="stage-header">
+        <div class="stage-num s1">1</div>
+        <div>
+          <div class="stage-title">The Gentle Nudge</div>
+          <div class="stage-timing">Send: Day 1 after due date · Tone: Friendly, helpful</div>
+        </div>
+      </div>
+      <div class="stage-body">
+        <p>Most late payments are simple oversight — the client got busy, the email got buried, or they forgot to forward it to accounting. Your first follow-up should assume good intent. This isn't a "late payment" email — it's a "friendly check-in."</p>
+
+        <div class="email-template">
+          <div class="subject">Subject: <span>Quick check-in — [Project Name] invoice</span></div>
+          <div class="body-text">Hi [Client Name],
+
+Just a quick note to make sure you received the invoice for [Project/Service] that was due on [Date]. Totally understand if things got busy — just wanted to bump it to the top of your inbox in case it got buried.
+
+If you've already sent payment, please disregard and thank you! If not, no rush — just whenever you get a chance.
+
+Let me know if you need anything from my side (updated W-9, different payment method, etc.).
+
+Thanks!
+[Your Name]</div>
+        </div>
+        <div class="key-principle">Key principle: Assume oversight, not malice. The phrase "make sure you received" frames this as helpful follow-up rather than a payment demand.</div>
+      </div>
+    </div>
+
+    <!-- Stage 2 -->
+    <div class="stage">
+      <div class="stage-header">
+        <div class="stage-num s2">2</div>
+        <div>
+          <div class="stage-title">The Firm Reminder</div>
+          <div class="stage-timing">Send: Day 7 past due · Tone: Direct, still polite</div>
+        </div>
+      </div>
+      <div class="stage-body">
+        <p>A week has passed with no response. The client either missed Stage 1 or they're avoiding. Now you shift from "friendly check-in" to "this needs attention." Mention the invoice number, the exact amount, and ask directly about payment timing.</p>
+
+        <div class="email-template">
+          <div class="subject">Subject: <span>Invoice #[Number] — 7 days past due</span></div>
+          <div class="body-text">Hi [Client Name],
+
+Following up on Invoice #[Number] for [Amount], which was due on [Date] and is now 7 days past due. I sent a quick check-in last week but wanted to make sure it didn't slip through the cracks.
+
+Could you let me know when we can expect payment? If there's an issue — wrong contact in accounting, a question about the invoice, or anything else — I'm happy to sort it out on my end.
+
+Appreciate your help getting this resolved.
+
+Best,
+[Your Name]</div>
+        </div>
+        <div class="key-principle">Key principle: Be specific. Include the invoice number and amount. The question "when can we expect payment" is harder to ignore than "just checking in."</div>
+      </div>
+    </div>
+
+    <!-- Stage 3 -->
+    <div class="stage">
+      <div class="stage-header">
+        <div class="stage-num s3">3</div>
+        <div>
+          <div class="stage-title">The Escalation</div>
+          <div class="stage-timing">Send: Day 14 past due · Tone: Professional, consequence-aware</div>
+        </div>
+      </div>
+      <div class="stage-body">
+        <p>Two weeks late and you've sent two follow-ups with no response. The default "they're just busy" assumption is getting thin. At this stage, you introduce the concept of a deadline — not a threat, but a clear boundary. You also offer to help troubleshoot (payment plan, partial payment, etc.).</p>
+
+        <div class="email-template">
+          <div class="subject">Subject: <span>Invoice #[Number] — action needed by [Date+7 days]</span></div>
+          <div class="body-text">Hi [Client Name],
+
+I've reached out twice about Invoice #[Number] for [Amount] (now 14 days past due) but haven't heard back. I value our working relationship and want to resolve this before it becomes a bigger issue.
+
+I need payment or a payment plan confirmed by [Date — 7 days from now]. If there's a reason this hasn't been paid — a dispute about the work, a cash flow issue on your end, or an administrative error — please let me know and we can work something out.
+
+If I don't hear back by [deadline date], I'll need to pause any ongoing work and consider next steps.
+
+Let's sort this out — reach me directly at [phone/email].
+
+[Your Name]</div>
+        </div>
+        <div class="key-principle">Key principle: Create a deadline, not an ultimatum. "Action needed by [date]" is a boundary, not a threat. Offer a way out: payment plan or troubleshooting.</div>
+      </div>
+    </div>
+
+    <!-- Stage 4 -->
+    <div class="stage">
+      <div class="stage-header">
+        <div class="stage-num s4">4</div>
+        <div>
+          <div class="stage-title">The Final Notice</div>
+          <div class="stage-timing">Send: Day 21 past due · Tone: Formal, last chance</div>
+        </div>
+      </div>
+      <div class="stage-body">
+        <p>Three weeks. You've given three chances. At this point, the relationship is secondary — getting paid is primary. This email should be short, direct, and make clear that further non-payment will have consequences. Mention late fees (if your contract allows them) and the next escalation step (collections, small claims, or legal action).</p>
+
+        <div class="email-template">
+          <div class="subject">Subject: <span>FINAL NOTICE — Invoice #[Number] for [Amount], now 21 days overdue</span></div>
+          <div class="body-text">[Client Name],
+
+Invoice #[Number] for [Amount] is now 21 days past due. I've sent three previous reminders without response.
+
+This is a final notice. If payment is not received within 7 days (by [Date]), I will:
+
+• Apply late fees as outlined in our agreement ([X]% per month / flat fee)
+• Turn this account over to collections
+• [Optional: File a claim in small claims court / pursue legal action]
+
+Please don't let this escalate. Payment can be made via [payment methods]. If you've already sent payment, please disregard and provide a confirmation so I can update my records.
+
+[Your Name]</div>
+        </div>
+        <div class="key-principle">Key principle: Be concrete about consequences. "Collections" and "small claims" are real words that signal you're serious. Only use this if you're actually prepared to follow through.</div>
+      </div>
+    </div>
+
+    <!-- Stage 5 -->
+    <div class="stage">
+      <div class="stage-header">
+        <div class="stage-num s5">5</div>
+        <div>
+          <div class="stage-title">The Last Resort</div>
+          <div class="stage-timing">Send: Day 30+ past due · Tone: Closure, formal</div>
+        </div>
+      </div>
+      <div class="stage-body">
+        <p>After 30 days and four follow-ups with no payment, the relationship is effectively over. This is no longer about preserving the client relationship — it's about recovering your money. The tone shifts from "let's work this out" to "here's what happens next." At this stage, you're documenting for potential legal action, not just sending another email.</p>
+
+        <div class="email-template">
+          <div class="subject">Subject: <span>Invoice #[Number] — account referred for collection</span></div>
+          <div class="body-text">[Client Name],
+
+Despite multiple attempts to resolve this matter amicably, Invoice #[Number] for [Amount] (issued [Date], due [Date]) remains unpaid after 30+ days.
+
+Effective immediately:
+
+• This account has been referred to [Collection Agency Name / Legal Counsel]
+• All future communication regarding this matter should be directed to [Agency/Lawyer contact info]
+• A record of non-payment has been [filed with credit bureau / reported to [Platform]]
+
+This can still be resolved. If payment is made in full by [final final deadline], I will withdraw the referral.
+
+Otherwise, I'll pursue every avenue available to recover what is owed.
+
+[Your Name]</div>
+        </div>
+        <div class="key-principle">Key principle: Only use Stage 5 if you're actually prepared to escalate. Empty threats destroy credibility and can be used against you. If the amount is small, it may not be worth the cost of collections or legal action — know your threshold.</div>
+      </div>
+    </div>
+
+    <!-- Bonus: Tracking Section -->
+    <div style="margin-top:48px;padding-top:40px;border-top:1px solid var(--gray-200)">
+      <h2 style="font-size:20px;margin-bottom:16px">Bonus: Track Everything</h2>
+      <p style="margin-bottom:16px">A system without tracking is just hope. For every invoice you chase, keep a record of:</p>
+      <ul style="padding-left:24px;margin-bottom:24px;color:var(--gray-700);font-size:15px">
+        <li style="margin-bottom:8px"><strong>Invoice details:</strong> number, amount, client, issue date, due date</li>
+        <li style="margin-bottom:8px"><strong>Follow-up log:</strong> date, stage, and outcome of each contact</li>
+        <li style="margin-bottom:8px"><strong>Payment status:</strong> pending, partial, paid, disputed, sent to collections</li>
+        <li style="margin-bottom:8px"><strong>Notes:</strong> client responses, promises made, red flags for future work</li>
+      </ul>
+      <p>This isn't just for you — if you ever need to escalate to collections or small claims court, a documented follow-up history is your best evidence that you acted reasonably and gave ample opportunity to pay.</p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2>Ready to Stop Chasing and Start Getting Paid?</h2>
+      <p>This guide gives you the strategy. The Invoice Chaser Template Pack gives you the exact email templates, tracking spreadsheet, and follow-up schedule — ready to use in 5 minutes.</p>
+      <a href="buy.html" class="btn btn-primary">Get the Template Pack — $9 one-time</a>
+      <a href="index.html" class="btn btn-secondary">Try the Free Invoice Tracker Tool</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  Invoice Chaser by <a href="https://selfloom.ai">Selfloom</a> · Questions? <a href="mailto:hello@selfloom.ai">hello@selfloom.ai</a>
+</footer>
+
+</body>
+</html>
