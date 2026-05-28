@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice Chaser — Freelance Payment Reminders</title>
+<style>
+:root {
+  --navy: #1a1a2e;
+  --navy-light: #16213e;
+  --red: #e94560;
+  --green: #0f9b5a;
+  --green-light: #e6f7ee;
+  --blue: #4a90d9;
+  --blue-light: #e8f1fb;
+  --yellow: #f0a500;
+  --yellow-light: #fef9e7;
+  --red-light: #fde8ec;
+  --gray-50: #f8f9fa;
+  --gray-100: #f1f3f5;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #adb5bd;
+  --gray-500: #6c757d;
+  --gray-700: #495057;
+  --gray-900: #212529;
+  --radius: 10px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  background: #f4f5f7;
+  color: var(--gray-900);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+.header {
+  background: linear-gradient(135deg, var(--navy) 0%, #1f3460 100%);
+  color: #fff;
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+.header-brand h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+.header-brand span {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  font-weight: 400;
+  display: block;
+  margin-top: 2px;
+}
+.header-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.sender-input {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  width: 180px;
+  outline: none;
+  transition: var(--transition);
+}
+.sender-input::placeholder { color: rgba(255,255,255,0.45); }
+.sender-input:focus { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.4); }
+
+/* ── Container ── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+/* ── Stats Bar ── */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.stat-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid transparent;
+  transition: var(--transition);
+  animation: fadeInUp 0.4s ease both;
+}
+.stat-card:nth-child(1) { border-left-color: var(--blue); animation-delay: 0s; }
+.stat-card:nth-child(2) { border-left-color: var(--red); animation-delay: 0.05s; }
+.stat-card:nth-child(3) { border-left-color: var(--yellow); animation-delay: 0.1s; }
+.stat-card:nth-child(4) { border-left-color: var(--green); animation-delay: 0.15s; }
+.stat-card:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
+.stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--gray-500);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.stat-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+.stat-value.red { color: var(--red); }
+.stat-value.blue { color: var(--blue); }
+.stat-value.yellow { color: var(--yellow); }
+.stat-value.green { color: var(--green); }
+
+/* ── Toolbar ── */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.toolbar-left { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.toolbar-right { display: flex; gap: 8px; }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: var(--font);
+  white-space: nowrap;
+  text-decoration: none;
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary { background: var(--blue); color: #fff; }
+.btn-primary:hover { background: #3a7fc8; }
+.btn-success { background: var(--green); color: #fff; }
+.btn-success:hover { background: #0c8348; }
+.btn-danger { background: var(--red); color: #fff; }
+.btn-danger:hover { background: #d63850; }
+.btn-outline {
+  background: #fff;
+  color: var(--gray-700);
+  border: 1.5px solid var(--gray-300);
+}
+.btn-outline:hover { border-color: var(--gray-400); background: var(--gray-50); }
+.btn-sm { padding: 6px 12px; font-size: 0.78rem; }
+.btn-xs { padding: 4px 10px; font-size: 0.72rem; border-radius: 5px; }
+
+/* ── Invoice Table ── */
+.invoice-table-wrapper {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.invoice-table th {
+  background: var(--gray-50);
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gray-500);
+  font-weight: 600;
+  border-bottom: 2px solid var(--gray-200);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+.invoice-table th:hover { color: var(--gray-700); }
+.invoice-table th .sort-icon { font-size: 0.65rem; margin-left: 3px; opacity: 0.5; }
+.invoice-table th.sorted .sort-icon { opacity: 1; color: var(--blue); }
+.invoice-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 0.88rem;
+  vertical-align: middle;
+}
+.invoice-table tbody tr {
+  transition: background var(--transition);
+  animation: fadeIn 0.3s ease both;
+}
+.invoice-table tbody tr:hover { background: var(--gray-50); }
+.invoice-table tbody tr.row-paid { background: var(--green-light); }
+.invoice-table tbody tr.row-paid:hover { background: #d8f0e3; }
+.invoice-table tbody tr.row-overdue { background: var(--red-light); }
+.invoice-table tbody tr.row-overdue:hover { background: #f9d8df; }
+.invoice-table tbody tr.row-due-soon { background: var(--yellow-light); }
+.invoice-table tbody tr.row-due-soon:hover { background: #fdf0cc; }
+
+/* Status Badge */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.73rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.badge-paid { background: var(--green-light); color: var(--green); }
+.badge-overdue { background: var(--red-light); color: var(--red); }
+.badge-due-soon { background: var(--yellow-light); color: #c47f00; }
+.badge-pending { background: var(--blue-light); color: var(--blue); }
+
+/* Days indicator */
+.days {
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+.days.overdue { color: var(--red); }
+.days.due-soon { color: #c47f00; }
+.days.pending { color: var(--gray-500); }
+.days.paid { color: var(--green); }
+
+.client-name { font-weight: 600; }
+.company-name { font-size: 0.78rem; color: var(--gray-500); display: block; }
+.amount { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--gray-400);
+}
+.empty-state-icon { font-size: 3rem; margin-bottom: 12px; }
+.empty-state p { font-size: 0.95rem; }
+
+/* ── Modal Overlay ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 560px;
+  max-height: 85vh;
+  overflow-y: auto;
+  animation: slideUp 0.25s ease;
+}
+.modal-wide { max-width: 750px; }
+.modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 1;
+  border-radius: 12px 12px 0 0;
+}
+.modal-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--gray-400);
+  padding: 4px 8px;
+  border-radius: 6px;
+  line-height: 1;
+  transition: var(--transition);
+}
+.modal-close:hover { background: var(--gray-100); color: var(--gray-700); }
+.modal-body { padding: 24px; }
+.modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  border-radius: 0 0 12px 12px;
+}
+
+/* ── Form ── */
+.form-group { margin-bottom: 16px; }
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 5px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 10px 13px;
+  border: 1.5px solid var(--gray-300);
+  border-radius: 7px;
+  font-size: 0.88rem;
+  font-family: var(--font);
+  color: var(--gray-900);
+  background: #fff;
+  transition: var(--transition);
+  outline: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(74,144,217,0.1);
+}
+.form-input.error { border-color: var(--red); }
+.form-error { color: var(--red); font-size: 0.75rem; margin-top: 4px; display: none; }
+.form-textarea { resize: vertical; min-height: 70px; }
+
+/* ── Reminder Accordion ── */
+.reminder-stages { display: flex; flex-direction: column; gap: 10px; }
+.stage-card {
+  border: 1.5px solid var(--gray-200);
+  border-radius: 9px;
+  overflow: hidden;
+  transition: var(--transition);
+}
+.stage-card.current {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(74,144,217,0.1);
+}
+.stage-card.past { opacity: 0.55; }
+.stage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  cursor: pointer;
+  background: var(--gray-50);
+  user-select: none;
+  transition: background var(--transition);
+}
+.stage-card.current .stage-header { background: var(--blue-light); }
+.stage-header:hover { background: var(--gray-100); }
+.stage-card.current .stage-header:hover { background: #d4e6f7; }
+.stage-title { font-weight: 600; font-size: 0.88rem; display: flex; align-items: center; gap: 8px; }
+.stage-badge {
+  font-size: 0.68rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+.stage-badge.current-badge { background: var(--blue); color: #fff; }
+.stage-chevron {
+  font-size: 0.8rem;
+  color: var(--gray-400);
+  transition: transform var(--transition);
+}
+.stage-card.open .stage-chevron { transform: rotate(180deg); }
+.stage-body {
+  display: none;
+  padding: 16px;
+  border-top: 1px solid var(--gray-200);
+  background: #fff;
+}
+.stage-card.open .stage-body { display: block; animation: fadeIn 0.2s ease; }
+.stage-body .email-subject {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--gray-700);
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--gray-200);
+}
+.stage-body .email-body {
+  white-space: pre-wrap;
+  font-size: 0.85rem;
+  color: var(--gray-900);
+  line-height: 1.7;
+  margin-bottom: 14px;
+  background: var(--gray-50);
+  padding: 14px;
+  border-radius: 7px;
+  border: 1px solid var(--gray-200);
+}
+.stage-body .stage-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ── Toast ── */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.toast {
+  background: var(--gray-900);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  animation: slideInRight 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+  max-width: 360px;
+}
+.toast.success { border-left: 4px solid var(--green); }
+.toast.error { border-left: 4px solid var(--red); }
+
+/* ── Animations ── */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideInRight { from { opacity: 0; transform: translateX(100px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes pulseGreen {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(15,155,90,0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(15,155,90,0); }
+}
+
+.pulse-paid { animation: pulseGreen 0.6s ease 2; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .header { padding: 18px 16px; }
+  .header-brand h1 { font-size: 1.25rem; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .stat-card { padding: 14px 16px; }
+  .stat-value { font-size: 1.3rem; }
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .toolbar-right { justify-content: flex-end; }
+  .form-row { grid-template-columns: 1fr; }
+  .modal { max-width: 100%; margin: 0; border-radius: 12px 12px 0 0; max-height: 92vh; }
+
+  /* Table to cards */
+  .invoice-table thead { display: none; }
+  .invoice-table, .invoice-table tbody, .invoice-table tr, .invoice-table td {
+    display: block;
+  }
+  .invoice-table tr {
+    padding: 16px;
+    border-bottom: 1px solid var(--gray-200);
+    position: relative;
+  }
+  .invoice-table td {
+    border: none;
+    padding: 4px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+  }
+  .invoice-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--gray-500);
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+  .invoice-table td:first-child { padding-top: 0; }
+  .invoice-table td:last-child { padding-bottom: 0; display: flex; gap: 6px; justify-content: flex-end; }
+  .invoice-table td:last-child::before { content: none; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 16px 10px 40px; }
+  .stats-bar { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .btn { padding: 8px 14px; font-size: 0.8rem; }
+  .sender-input { width: 130px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-brand">
+    <h1>Invoice Chaser</h1>
+    <span>Freelance Payment Reminder System</span>
+  </div>
+  <div class="header-actions">
+    <input type="text" class="sender-input" id="senderName" placeholder="Your Name / Company" maxlength="60">
+    <button class="btn btn-primary" id="btnAddInvoice">+ New Invoice</button>
+    <button class="btn btn-outline btn-sm" id="btnExport">Export</button>
+    <button class="btn btn-outline btn-sm" id="btnImport">Import</button>
+  </div>
+</header>
+
+<div class="container">
+  <!-- Stats Bar -->
+  <div class="stats-bar" id="statsBar">
+    <div class="stat-card"><div class="stat-label">Total Outstanding</div><div class="stat-value blue" id="statOutstanding">$0</div></div>
+    <div class="stat-card"><div class="stat-label">Overdue</div><div class="stat-value red" id="statOverdue">0</div></div>
+    <div class="stat-card"><div class="stat-label">Pending</div><div class="stat-value yellow" id="statPending">0</div></div>
+    <div class="stat-card"><div class="stat-label">Paid This Month</div><div class="stat-value green" id="statPaidMonth">$0</div></div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <span style="font-size:0.82rem;color:var(--gray-500);font-weight:500;" id="invoiceCount">0 invoices</span>
+    </div>
+    <div class="toolbar-right">
+      <button class="btn btn-outline btn-sm" id="btnExportCSV">Export CSV</button>
+    </div>
+  </div>
+
+  <!-- Invoice Table -->
+  <div class="invoice-table-wrapper">
+    <table class="invoice-table" id="invoiceTable">
+      <thead>
+        <tr>
+          <th data-sort="clientName">Client <span class="sort-icon">↕</span></th>
+          <th data-sort="invoiceNumber">Invoice # <span class="sort-icon">↕</span></th>
+          <th data-sort="amount">Amount <span class="sort-icon">↕</span></th>
+          <th data-sort="dueDate">Due Date <span class="sort-icon">↕</span></th>
+          <th data-sort="status">Status <span class="sort-icon">↕</span></th>
+          <th data-sort="daysRemaining">Days <span class="sort-icon">↕</span></th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="invoiceBody"></tbody>
+    </table>
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <div class="empty-state-icon">📄</div>
+      <p>No invoices yet. Click <strong>+ New Invoice</strong> to get started.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CTA Banner -->
+<div style="max-width:1100px;margin:0 auto;padding:0 20px 20px;">
+  <div style="background:#fff;border-radius:10px;padding:20px 24px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.06);border-left:4px solid #0f9b5a;">
+    <p style="color:#495057;font-size:0.88rem;margin:0 0 10px 0;">Like this tool? <strong>Get the complete Invoice Chaser Template Pack</strong> — 5 human-toned email templates, tracking spreadsheet, and follow-up schedule. One-time purchase, instant download.</p>
+    <a href="mailto:hello@selfloom.ai?subject=Invoice%20Pack%20%E2%80%94%20Purchase%20Request" style="display:inline-block;padding:10px 24px;background:#0f9b5a;color:#fff;text-decoration:none;border-radius:7px;font-weight:600;font-size:0.9rem;transition:background .2s;">Get the Template Pack &rarr;</a>
+    <p style="color:#adb5bd;font-size:0.72rem;margin:8px 0 0 0;">Questions? Email hello@selfloom.ai</p>
+  </div>
+</div>
+
+<!-- Add/Edit Invoice Modal -->
+<div class="modal-overlay" id="invoiceModalOverlay" style="display:none;">
+  <div class="modal" id="invoiceModal">
+    <div class="modal-header">
+      <h3 id="invoiceModalTitle">New Invoice</h3>
+      <button class="modal-close" id="btnCloseModal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="invoiceForm" novalidate>
+        <input type="hidden" id="formInvoiceId">
+        <div class="form-group">
+          <label for="formClientName">Client Name *</label>
+          <input type="text" class="form-input" id="formClientName" placeholder="e.g. John Smith" required maxlength="100">
+          <div class="form-error" id="errClientName">Client name is required.</div>
+        </div>
+        <div class="form-group">
+          <label for="formCompany">Company</label>
+          <input type="text" class="form-input" id="formCompany" placeholder="e.g. Acme Corp" maxlength="100">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="formInvoiceNumber">Invoice Number *</label>
+            <input type="text" class="form-input" id="formInvoiceNumber" placeholder="e.g. INV-2024-001" required maxlength="50">
+            <div class="form-error" id="errInvoiceNumber">Invoice number is required.</div>
+          </div>
+          <div class="form-group">
+            <label for="formClientEmail">Client Email</label>
+            <input type="email" class="form-input" id="formClientEmail" placeholder="client@example.com" maxlength="120">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="formAmount">Amount *</label>
+            <input type="number" class="form-input" id="formAmount" placeholder="0.00" required min="0.01" step="0.01">
+            <div class="form-error" id="errAmount">Valid amount required.</div>
+          </div>
+          <div class="form-group">
+            <label for="formCurrency">Currency</label>
+            <select class="form-select" id="formCurrency">
+              <option value="USD">USD ($)</option>
+              <option value="EUR">EUR (€)</option>
+              <option value="GBP">GBP (£)</option>
+              <option value="CAD">CAD (C$)</option>
+              <option value="AUD">AUD (A$)</option>
+              <option value="CNY">CNY (¥)</option>
+              <option value="JPY">JPY (¥)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="formIssueDate">Issue Date *</label>
+            <input type="date" class="form-input" id="formIssueDate" required>
+            <div class="form-error" id="errIssueDate">Issue date is required.</div>
+          </div>
+          <div class="form-group">
+            <label for="formDueDate">Due Date *</label>
+            <input type="date" class="form-input" id="formDueDate" required>
+            <div class="form-error" id="errDueDate">Due date is required.</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="formDescription">Service Description</label>
+          <textarea class="form-textarea" id="formDescription" placeholder="e.g. Website redesign — 3 pages, mobile responsive" maxlength="500"></textarea>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" id="btnCancelForm">Cancel</button>
+      <button class="btn btn-primary" id="btnSaveInvoice">Save Invoice</button>
+    </div>
+  </div>
+</div>
+
+<!-- Reminder Modal -->
+<div class="modal-overlay" id="reminderModalOverlay" style="display:none;">
+  <div class="modal modal-wide" id="reminderModal">
+    <div class="modal-header">
+      <h3>Payment Reminders</h3>
+      <button class="modal-close" id="btnCloseReminder">&times;</button>
+    </div>
+    <div class="modal-body" id="reminderBody"></div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Hidden file input for import -->
+<input type="file" id="importFileInput" accept=".json" style="display:none;">
+
+<script>
+(function() {
+
+const STORAGE_KEY = 'invoiceChaser_data';
+const SETTINGS_KEY = 'invoiceChaser_settings';
+const CURRENCY_SYMBOLS = {
+  USD: '$', EUR: '€', GBP: '£', CAD: 'C$', AUD: 'A$', CNY: '¥', JPY: '¥'
+};
+
+// ── State ──
+let invoices = [];
+let sortField = 'dueDate';
+let sortDir = 'asc';
+let editingId = null;
+
+// ── DOM refs ──
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => document.querySelectorAll(sel);
+
+// ── Persistence ──
+function loadInvoices() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        invoices = parsed;
+        return;
+      }
+    }
+  } catch (e) { /* ignore corrupt data */ }
+  seedSampleData();
+}
+
+function saveInvoices() { localStorage.setItem(STORAGE_KEY, JSON.stringify(invoices)); }
+
+function loadSettings() {
+  try {
+    const raw = localStorage.getItem(SETTINGS_KEY);
+    if (raw) {
+      const s = JSON.parse(raw);
+      if (s.senderName) $('#senderName').value = s.senderName;
+    }
+  } catch(e) {}
+}
+
+function saveSettings() {
+  localStorage.setItem(SETTINGS_KEY, JSON.stringify({
+    senderName: $('#senderName').value.trim()
+  }));
+}
+
+// ── Sample Data ──
+function seedSampleData() {
+  const now = new Date();
+  const fmt = (d) => d.toISOString().split('T')[0];
+  const addDays = (d, n) => { const r = new Date(d); r.setDate(r.getDate() + n); return r; };
+
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  invoices = [
+    {
+      id: crypto.randomUUID ? crypto.randomUUID() : 's1' + Date.now(),
+      clientName: 'Sarah Chen',
+      company: 'Acme Corp',
+      invoiceNumber: 'INV-2024-0042',
+      amount: 3500,
+      currency: 'USD',
+      issueDate: fmt(addDays(today, -30)),
+      dueDate: fmt(addDays(today, -15)),
+      serviceDescription: 'Website redesign — 5 pages, mobile responsive, CMS integration',
+      clientEmail: 'sarah@acmecorp.com',
+      status: 'paid',
+      paidDate: fmt(addDays(today, -16)),
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: crypto.randomUUID ? crypto.randomUUID() : 's2' + Date.now(),
+      clientName: 'Marcus Rivera',
+      company: 'TechStart Inc',
+      invoiceNumber: 'INV-2024-0051',
+      amount: 2800,
+      currency: 'USD',
+      issueDate: fmt(addDays(today, -10)),
+      dueDate: fmt(addDays(today, 4)),
+      serviceDescription: 'Mobile app UI/UX design — iOS & Android, 12 screens',
+      clientEmail: 'marcus@techstart.io',
+      status: 'pending',
+      paidDate: null,
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: crypto.randomUUID ? crypto.randomUUID() : 's3' + Date.now(),
+      clientName: 'Emily Watson',
+      company: 'Global Services Ltd',
+      invoiceNumber: 'INV-2024-0038',
+      amount: 5200,
+      currency: 'EUR',
+      issueDate: fmt(addDays(today, -45)),
+      dueDate: fmt(addDays(today, -28)),
+      serviceDescription: 'Quarterly business consulting — Q1 strategy, market analysis, competitor research',
+      clientEmail: 'emily@globalservices.co.uk',
+      status: 'pending',
+      paidDate: null,
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: crypto.randomUUID ? crypto.randomUUID() : 's4' + Date.now(),
+      clientName: 'David Park',
+      company: 'Bright Ideas Co',
+      invoiceNumber: 'INV-2024-0055',
+      amount: 1500,
+      currency: 'CAD',
+      issueDate: fmt(addDays(today, -3)),
+      dueDate: fmt(addDays(today, 45)),
+      serviceDescription: 'Content strategy — blog calendar, SEO audit, 4 cornerstone articles',
+      clientEmail: 'david@brightideas.co',
+      status: 'pending',
+      paidDate: null,
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: crypto.randomUUID ? crypto.randomUUID() : 's5' + Date.now(),
+      clientName: 'Jessica Lim',
+      company: 'NexGen Solutions',
+      invoiceNumber: 'INV-2024-0047',
+      amount: 8750,
+      currency: 'USD',
+      issueDate: fmt(addDays(today, -40)),
+      dueDate: fmt(addDays(today, -20)),
+      serviceDescription: 'Full-stack development — Dashboard, API, auth system, deployment pipeline',
+      clientEmail: 'jessica@nexgensolutions.com',
+      status: 'pending',
+      paidDate: null,
+      createdAt: new Date().toISOString()
+    }
+  ];
+  saveInvoices();
+}
+
+// ── Helpers ──
+function today() {
+  const d = new Date();
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+}
+
+function parseDate(str) { return new Date(str + 'T00:00:00'); }
+
+function daysBetween(a, b) {
+  return Math.round((b.getTime() - a.getTime()) / 86400000);
+}
+
+function formatCurrency(amount, currency) {
+  const sym = CURRENCY_SYMBOLS[currency] || '$';
+  return sym + Number(amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function formatDate(dateStr) {
+  const d = parseDate(dateStr);
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function getInvoiceStatus(inv) {
+  if (inv.status === 'paid') return 'paid';
+  const due = parseDate(inv.dueDate);
+  const td = today();
+  if (due < td) return 'overdue';
+  const diff = daysBetween(td, due);
+  if (diff <= 7) return 'due-soon';
+  return 'pending';
+}
+
+function getDaysText(inv) {
+  const status = getInvoiceStatus(inv);
+  if (status === 'paid') return 'Paid ' + formatDate(inv.paidDate);
+  const due = parseDate(inv.dueDate);
+  const td = today();
+  const diff = daysBetween(td, due);
+  if (status === 'overdue') return Math.abs(diff) + 'd overdue';
+  if (diff === 0) return 'Due today';
+  return diff + 'd until due';
+}
+
+// ── Toast ──
+function showToast(msg, type) {
+  const container = $('#toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast ' + (type || '');
+  toast.textContent = msg;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 3200);
+}
+
+// ── Stats ──
+function updateStats() {
+  const td = today();
+  const monthStart = new Date(td.getFullYear(), td.getMonth(), 1);
+
+  let outstanding = 0;
+  let overdueCount = 0;
+  let pendingCount = 0;
+  let paidMonth = 0;
+
+  invoices.forEach(inv => {
+    const status = getInvoiceStatus(inv);
+    if (status === 'paid') {
+      const pd = parseDate(inv.paidDate);
+      if (pd >= monthStart) paidMonth += inv.amount;
+    } else {
+      outstanding += inv.amount;
+      if (status === 'overdue') overdueCount++;
+      else pendingCount++;
+    }
+  });
+
+  $('#statOutstanding').textContent = formatCurrency(outstanding, 'USD');
+  $('#statOverdue').textContent = overdueCount;
+  $('#statPending').textContent = pendingCount;
+  $('#statPaidMonth').textContent = formatCurrency(paidMonth, 'USD');
+  $('#invoiceCount').textContent = invoices.length + ' invoice' + (invoices.length !== 1 ? 's' : '');
+}
+
+// ── Render Table ──
+function renderTable() {
+  const tbody = $('#invoiceBody');
+  const empty = $('#emptyState');
+
+  if (invoices.length === 0) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  // Sort
+  const sorted = [...invoices].sort((a, b) => {
+    let va, vb;
+    if (sortField === 'amount') { va = a.amount; vb = b.amount; }
+    else if (sortField === 'dueDate') { va = parseDate(a.dueDate).getTime(); vb = parseDate(b.dueDate).getTime(); }
+    else if (sortField === 'daysRemaining') {
+      const sa = getInvoiceStatus(a), sb = getInvoiceStatus(b);
+      if (sa === 'paid' && sb !== 'paid') return sortDir === 'asc' ? 1 : -1;
+      if (sa !== 'paid' && sb === 'paid') return sortDir === 'asc' ? -1 : 1;
+      const da = sa === 'paid' ? parseDate(a.paidDate) : parseDate(a.dueDate);
+      const db = sb === 'paid' ? parseDate(b.paidDate) : parseDate(b.dueDate);
+      va = da.getTime(); vb = db.getTime();
+    }
+    else if (sortField === 'status') { va = getInvoiceStatus(a); vb = getInvoiceStatus(b); }
+    else { va = (a[sortField] || '').toLowerCase(); vb = (b[sortField] || '').toLowerCase(); }
+
+    if (va < vb) return sortDir === 'asc' ? -1 : 1;
+    if (va > vb) return sortDir === 'asc' ? 1 : -1;
+    return 0;
+  });
+
+  tbody.innerHTML = sorted.map(inv => {
+    const status = getInvoiceStatus(inv);
+    const rowClass = status === 'paid' ? 'row-paid' : status === 'overdue' ? 'row-overdue' : status === 'due-soon' ? 'row-due-soon' : '';
+    const badgeClass = status === 'paid' ? 'badge-paid' : status === 'overdue' ? 'badge-overdue' : status === 'due-soon' ? 'badge-due-soon' : 'badge-pending';
+    const badgeText = status === 'paid' ? 'Paid' : status === 'overdue' ? 'Overdue' : status === 'due-soon' ? 'Due Soon' : 'Pending';
+    const daysClass = status === 'paid' ? 'paid' : status === 'overdue' ? 'overdue' : status === 'due-soon' ? 'due-soon' : 'pending';
+    const daysText = getDaysText(inv);
+    const displayName = inv.company ? inv.clientName + ' · ' + inv.company : inv.clientName;
+
+    let actions = '';
+    if (status !== 'paid') {
+      actions += `<button class="btn btn-success btn-xs" onclick="InvoiceChaser.markPaid('${inv.id}')" title="Mark as Paid">Paid</button> `;
+      actions += `<button class="btn btn-outline btn-xs" onclick="InvoiceChaser.openReminders('${inv.id}')" title="Generate Reminders">Remind</button> `;
+    }
+    actions += `<button class="btn btn-outline btn-xs" onclick="InvoiceChaser.editInvoice('${inv.id}')" title="Edit">Edit</button> `;
+    actions += `<button class="btn btn-danger btn-xs" onclick="InvoiceChaser.deleteInvoice('${inv.id}')" title="Delete">Del</button>`;
+
+    return `<tr class="${rowClass}">
+      <td data-label="Client"><span class="client-name">${escapeHtml(inv.clientName)}</span>${inv.company ? '<span class="company-name">' + escapeHtml(inv.company) + '</span>' : ''}</td>
+      <td data-label="Invoice #">${escapeHtml(inv.invoiceNumber)}</td>
+      <td data-label="Amount"><span class="amount">${formatCurrency(inv.amount, inv.currency)}</span></td>
+      <td data-label="Due Date">${formatDate(inv.dueDate)}</td>
+      <td data-label="Status"><span class="badge ${badgeClass}">${badgeText}</span></td>
+      <td data-label="Days"><span class="days ${daysClass}">${daysText}</span></td>
+      <td data-label="Actions">${actions}</td>
+    </tr>`;
+  }).join('');
+
+  // Highlight active sort
+  $$('.invoice-table th').forEach(th => {
+    th.classList.toggle('sorted', th.dataset.sort === sortField);
+    const icon = th.querySelector('.sort-icon');
+    if (icon) icon.textContent = th.dataset.sort === sortField ? (sortDir === 'asc' ? '↑' : '↓') : '↕';
+  });
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+// ── Render All ──
+function renderAll() {
+  updateStats();
+  renderTable();
+}
+
+// ── Modal Helpers ──
+function openModal(overlayId) {
+  $(overlayId).style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(overlayId) {
+  $(overlayId).style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// ── Invoice Form ──
+function openAddInvoice() {
+  editingId = null;
+  $('#invoiceModalTitle').textContent = 'New Invoice';
+  $('#formInvoiceId').value = '';
+  $('#formClientName').value = '';
+  $('#formCompany').value = '';
+  $('#formInvoiceNumber').value = '';
+  $('#formClientEmail').value = '';
+  $('#formAmount').value = '';
+  $('#formCurrency').value = 'USD';
+  $('#formIssueDate').value = today().toISOString().split('T')[0];
+  $('#formDueDate').value = '';
+  $('#formDescription').value = '';
+  clearErrors();
+  openModal('#invoiceModalOverlay');
+}
+
+function editInvoice(id) {
+  const inv = invoices.find(i => i.id === id);
+  if (!inv) return;
+  editingId = id;
+  $('#invoiceModalTitle').textContent = 'Edit Invoice';
+  $('#formInvoiceId').value = inv.id;
+  $('#formClientName').value = inv.clientName;
+  $('#formCompany').value = inv.company || '';
+  $('#formInvoiceNumber').value = inv.invoiceNumber;
+  $('#formClientEmail').value = inv.clientEmail || '';
+  $('#formAmount').value = inv.amount;
+  $('#formCurrency').value = inv.currency;
+  $('#formIssueDate').value = inv.issueDate;
+  $('#formDueDate').value = inv.dueDate;
+  $('#formDescription').value = inv.serviceDescription || '';
+  clearErrors();
+  openModal('#invoiceModalOverlay');
+}
+
+function clearErrors() {
+  $$('.form-input.error, .form-select.error').forEach(el => el.classList.remove('error'));
+  $$('.form-error').forEach(el => el.style.display = 'none');
+}
+
+function saveInvoice() {
+  clearErrors();
+  let valid = true;
+
+  const clientName = $('#formClientName').value.trim();
+  const invoiceNumber = $('#formInvoiceNumber').value.trim();
+  const amount = parseFloat($('#formAmount').value);
+  const issueDate = $('#formIssueDate').value;
+  const dueDate = $('#formDueDate').value;
+
+  if (!clientName) { showFieldError('formClientName', 'errClientName'); valid = false; }
+  if (!invoiceNumber) { showFieldError('formInvoiceNumber', 'errInvoiceNumber'); valid = false; }
+  if (!amount || amount <= 0) { showFieldError('formAmount', 'errAmount'); valid = false; }
+  if (!issueDate) { showFieldError('formIssueDate', 'errIssueDate'); valid = false; }
+  if (!dueDate) { showFieldError('formDueDate', 'errDueDate'); valid = false; }
+  if (issueDate && dueDate && dueDate < issueDate) {
+    showFieldError('formDueDate', 'errDueDate');
+    $('#errDueDate').textContent = 'Due date must be on or after issue date.';
+    valid = false;
+  }
+
+  if (!valid) return;
+
+  const data = {
+    id: editingId || (crypto.randomUUID ? crypto.randomUUID() : 'inv' + Date.now()),
+    clientName,
+    company: $('#formCompany').value.trim(),
+    invoiceNumber,
+    amount,
+    currency: $('#formCurrency').value,
+    issueDate,
+    dueDate,
+    serviceDescription: $('#formDescription').value.trim(),
+    clientEmail: $('#formClientEmail').value.trim(),
+    status: 'pending',
+    paidDate: null,
+    createdAt: new Date().toISOString()
+  };
+
+  if (editingId) {
+    const idx = invoices.findIndex(i => i.id === editingId);
+    if (idx !== -1) {
+      // Preserve paid status and paidDate
+      data.status = invoices[idx].status;
+      data.paidDate = invoices[idx].paidDate;
+      invoices[idx] = data;
+    }
+  } else {
+    invoices.push(data);
+  }
+
+  saveInvoices();
+  closeModal('#invoiceModalOverlay');
+  renderAll();
+  showToast(editingId ? 'Invoice updated.' : 'Invoice added.', 'success');
+}
+
+function showFieldError(inputId, errId) {
+  $('#' + inputId).classList.add('error');
+  $('#' + errId).style.display = 'block';
+}
+
+function markPaid(id) {
+  const inv = invoices.find(i => i.id === id);
+  if (!inv || inv.status === 'paid') return;
+  inv.status = 'paid';
+  inv.paidDate = today().toISOString().split('T')[0];
+  saveInvoices();
+  renderAll();
+  showToast('Invoice #' + inv.invoiceNumber + ' marked as paid.', 'success');
+
+  // Pulse animation
+  setTimeout(() => {
+    const row = document.querySelector(`tr.row-paid`);
+    if (row) { row.classList.add('pulse-paid'); setTimeout(() => row.classList.remove('pulse-paid'), 1200); }
+  }, 100);
+}
+
+function deleteInvoice(id) {
+  const inv = invoices.find(i => i.id === id);
+  if (!inv) return;
+  if (!confirm('Delete invoice #' + inv.invoiceNumber + ' for ' + inv.clientName + '? This cannot be undone.')) return;
+  invoices = invoices.filter(i => i.id !== id);
+  saveInvoices();
+  renderAll();
+  showToast('Invoice deleted.', 'error');
+}
+
+// ── Reminder Generator ──
+const EMAIL_STAGES = [
+  {
+    stage: 1,
+    title: 'Friendly Reminder',
+    timing: '7 days before due date',
+    subjectTemplate: (inv) => 'Friendly Reminder: Invoice ' + inv.invoiceNumber + ' — Due ' + formatDate(inv.dueDate),
+    bodyTemplate: (inv, sender) => `Hi ${inv.clientName},
+
+Just a friendly heads-up that invoice ${inv.invoiceNumber} for ${formatCurrency(inv.amount, inv.currency)} is due on ${formatDate(inv.dueDate)}. No rush — just wanted to give you a heads-up in case it helps with your planning.
+
+Here's a quick summary:
+• Invoice: ${inv.invoiceNumber}
+• Amount: ${formatCurrency(inv.amount, inv.currency)}
+• Due Date: ${formatDate(inv.dueDate)}${inv.serviceDescription ? '\n• Service: ' + inv.serviceDescription : ''}
+
+Please let me know if you have any questions or need anything from my side.
+
+Best,
+${sender || '[Your Name]'}`
+  },
+  {
+    stage: 2,
+    title: 'Due Date Reminder',
+    timing: 'On the due date',
+    subjectTemplate: (inv) => 'Payment Due Today: Invoice ' + inv.invoiceNumber,
+    bodyTemplate: (inv, sender) => `Hi ${inv.clientName},
+
+Just a quick note that invoice ${inv.invoiceNumber} for ${formatCurrency(inv.amount, inv.currency)} is due today (${formatDate(inv.dueDate)}).
+
+Summary:
+• Invoice: ${inv.invoiceNumber}
+• Amount: ${formatCurrency(inv.amount, inv.currency)}
+• Due: Today (${formatDate(inv.dueDate)})
+
+If payment has already been initiated, please disregard this note. Otherwise, could you let me know when I might expect it?
+
+Thanks,
+${sender || '[Your Name]'}`
+  },
+  {
+    stage: 3,
+    title: 'Gentle Nudge',
+    timing: '3 days past due',
+    subjectTemplate: (inv) => 'Quick Follow-up: Invoice ' + inv.invoiceNumber + ' — Past Due',
+    bodyTemplate: (inv, sender) => `Hi ${inv.clientName},
+
+Hope all is well. I noticed invoice ${inv.invoiceNumber} for ${formatCurrency(inv.amount, inv.currency)} is now past the due date of ${formatDate(inv.dueDate)}.
+
+I understand things can get busy — just wanted to check in and see if there's anything I can do on my end to help move this along.
+
+Summary:
+• Invoice: ${inv.invoiceNumber}
+• Amount: ${formatCurrency(inv.amount, inv.currency)}
+• Was Due: ${formatDate(inv.dueDate)}
+
+Thanks for taking a look!
+
+Best,
+${sender || '[Your Name]'}`
+  },
+  {
+    stage: 4,
+    title: 'Firm Follow-up',
+    timing: '7 days past due',
+    subjectTemplate: (inv) => 'Overdue: Invoice ' + inv.invoiceNumber + ' — Payment Required',
+    bodyTemplate: (inv, sender) => `Hi ${inv.clientName},
+
+Invoice ${inv.invoiceNumber} for ${formatCurrency(inv.amount, inv.currency)} is now 7 days past due. I wanted to follow up as I haven't received payment or heard back since my previous messages.${inv.serviceDescription ? '\n\nThis invoice was for the following work:\n' + inv.serviceDescription : ''}
+
+I'd appreciate it if you could let me know your expected payment date, or if there are any issues we should discuss.
+
+Summary:
+• Invoice: ${inv.invoiceNumber}
+• Amount: ${formatCurrency(inv.amount, inv.currency)}
+• Due Date: ${formatDate(inv.dueDate)} (7 days overdue)
+
+I'd like to resolve this without needing to escalate — please get back to me at your earliest convenience.
+
+Regards,
+${sender || '[Your Name]'}`
+  },
+  {
+    stage: 5,
+    title: 'Final Notice',
+    timing: '14 days past due',
+    subjectTemplate: (inv) => 'FINAL NOTICE: Invoice ' + inv.invoiceNumber + ' — 14 Days Overdue',
+    bodyTemplate: (inv, sender) => `Hi ${inv.clientName},
+
+This is a final notice regarding invoice ${inv.invoiceNumber} for ${formatCurrency(inv.amount, inv.currency)}, which is now 14 days past the due date of ${formatDate(inv.dueDate)}.
+
+I've reached out several times without receiving payment or a response. Unless I hear back with a confirmed payment date within the next 5 business days, I'll need to explore other options to recover this payment.
+
+Summary:
+• Invoice: ${inv.invoiceNumber}
+• Amount: ${formatCurrency(inv.amount, inv.currency)}
+• Original Due Date: ${formatDate(inv.dueDate)} (now 14 days overdue)${inv.serviceDescription ? '\n• Service: ' + inv.serviceDescription : ''}
+
+I'm still open to working this out — please contact me directly if there are any circumstances I should be aware of.
+
+Regards,
+${sender || '[Your Name]'}`
+  }
+];
+
+function getCurrentStage(inv) {
+  const due = parseDate(inv.dueDate);
+  const td = today();
+  const diff = daysBetween(due, td); // positive = overdue
+
+  if (diff <= -7) return 1;   // 7+ days before due
+  if (diff < 0) return 2;     // within 7 days before due → due date reminder
+  if (diff === 0) return 2;   // due today
+  if (diff <= 3) return 3;    // 1-3 days overdue
+  if (diff <= 7) return 4;    // 4-7 days overdue
+  return 5;                    // 8+ days overdue
+}
+
+function openReminders(id) {
+  const inv = invoices.find(i => i.id === id);
+  if (!inv || inv.status === 'paid') return;
+
+  const sender = $('#senderName').value.trim() || '[Your Name]';
+  const currentStage = getCurrentStage(inv);
+  const container = $('#reminderBody');
+
+  const html = `
+    <div style="margin-bottom:16px;padding:12px 16px;background:var(--blue-light);border-radius:8px;font-size:0.85rem;">
+      <strong>${inv.clientName}</strong>${inv.company ? ' · ' + inv.company : ''} &nbsp;|&nbsp;
+      ${formatCurrency(inv.amount, inv.currency)} &nbsp;|&nbsp;
+      Due ${formatDate(inv.dueDate)}
+      ${inv.clientEmail ? '<br><span style="opacity:0.7;">' + escapeHtml(inv.clientEmail) + '</span>' : ''}
+    </div>
+    <div class="reminder-stages">
+      ${EMAIL_STAGES.map(s => {
+        const isCurrent = s.stage === currentStage;
+        const isPast = s.stage < currentStage;
+        const subject = s.subjectTemplate(inv);
+        const body = s.bodyTemplate(inv, sender);
+        const fullEmail = 'To: ' + (inv.clientEmail || inv.clientName) + '\nSubject: ' + subject + '\n\n' + body;
+        return `<div class="stage-card ${isCurrent ? 'current open' : ''} ${isPast && !isCurrent ? 'past' : ''}">
+          <div class="stage-header" onclick="InvoiceChaser.toggleStage(this)">
+            <span class="stage-title">
+              Stage ${s.stage}: ${s.title}
+              ${isCurrent ? '<span class="stage-badge current-badge">CURRENT</span>' : ''}
+            </span>
+            <span style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:0.75rem;color:var(--gray-500);">${s.timing}</span>
+              <span class="stage-chevron">▼</span>
+            </span>
+          </div>
+          <div class="stage-body">
+            <div class="email-subject">Subject: ${escapeHtml(subject)}</div>
+            <div class="email-body">${escapeHtml(body)}</div>
+            <div class="stage-actions">
+              <button class="btn btn-primary btn-sm" onclick="InvoiceChaser.copyEmail(\`${escapeHtml(fullEmail).replace(/`/g, '\\`')}\`)">Copy to Clipboard</button>
+              ${inv.clientEmail ? `<button class="btn btn-outline btn-sm" onclick="InvoiceChaser.openMailto('${escapeHtml(inv.clientEmail)}', '${escapeHtml(subject)}', '${escapeHtml(body)}')">Open in Email Client</button>` : ''}
+            </div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+  `;
+
+  container.innerHTML = html;
+  openModal('#reminderModalOverlay');
+}
+
+function toggleStage(header) {
+  header.parentElement.classList.toggle('open');
+}
+
+function copyEmail(text) {
+  // Unescape the text (it was escaped for safe HTML display)
+  const decoded = text.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(decoded).then(() => showToast('Email copied to clipboard.', 'success'));
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = decoded;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('Email copied to clipboard.', 'success');
+  }
+}
+
+function openMailto(to, subject, body) {
+  const decodedSubject = decodeHtml(subject);
+  const decodedBody = decodeHtml(body);
+  const url = 'mailto:' + encodeURIComponent(to) + '?subject=' + encodeURIComponent(decodedSubject) + '&body=' + encodeURIComponent(decodedBody);
+  window.open(url, '_blank');
+}
+
+function decodeHtml(str) {
+  const div = document.createElement('div');
+  div.innerHTML = str;
+  return div.textContent;
+}
+
+// ── Export / Import ──
+function exportJSON() {
+  const data = JSON.stringify(invoices, null, 2);
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'invoice-chaser-export-' + today().toISOString().split('T')[0] + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('Invoices exported as JSON.', 'success');
+}
+
+function exportCSV() {
+  if (invoices.length === 0) { showToast('No invoices to export.', 'error'); return; }
+  const headers = ['Client Name', 'Company', 'Invoice Number', 'Amount', 'Currency', 'Issue Date', 'Due Date', 'Service Description', 'Client Email', 'Status', 'Paid Date'];
+  const rows = invoices.map(inv => [
+    csvEscape(inv.clientName),
+    csvEscape(inv.company || ''),
+    csvEscape(inv.invoiceNumber),
+    inv.amount,
+    inv.currency,
+    inv.issueDate,
+    inv.dueDate,
+    csvEscape(inv.serviceDescription || ''),
+    csvEscape(inv.clientEmail || ''),
+    inv.status,
+    inv.paidDate || ''
+  ]);
+  const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'invoice-chaser-export-' + today().toISOString().split('T')[0] + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('Invoices exported as CSV.', 'success');
+}
+
+function csvEscape(str) {
+  if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+    return '"' + str.replace(/"/g, '""') + '"';
+  }
+  return str;
+}
+
+function importJSON(file) {
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!Array.isArray(data)) throw new Error('Not an array');
+      // Basic validation
+      const valid = data.filter(d => d.clientName && d.invoiceNumber && d.amount && d.dueDate);
+      if (valid.length === 0) throw new Error('No valid invoices found');
+      if (!confirm('Import ' + valid.length + ' invoice(s)? This will replace all current invoices.')) return;
+      invoices = valid;
+      saveInvoices();
+      renderAll();
+      showToast(valid.length + ' invoice(s) imported.', 'success');
+    } catch (err) {
+      showToast('Invalid file format. Please upload a valid JSON export.', 'error');
+    }
+  };
+  reader.readAsText(file);
+}
+
+// ── Event Listeners ──
+$('#btnAddInvoice').addEventListener('click', openAddInvoice);
+$('#btnSaveInvoice').addEventListener('click', saveInvoice);
+$('#btnCancelForm').addEventListener('click', () => closeModal('#invoiceModalOverlay'));
+$('#btnCloseModal').addEventListener('click', () => closeModal('#invoiceModalOverlay'));
+$('#btnCloseReminder').addEventListener('click', () => closeModal('#reminderModalOverlay'));
+$('#btnExport').addEventListener('click', exportJSON);
+$('#btnExportCSV').addEventListener('click', exportCSV);
+$('#btnImport').addEventListener('click', () => $('#importFileInput').click());
+$('#importFileInput').addEventListener('change', (e) => { if (e.target.files[0]) importJSON(e.target.files[0]); e.target.value = ''; });
+
+// Close modals on overlay click
+$('#invoiceModalOverlay').addEventListener('click', function(e) { if (e.target === this) closeModal('#invoiceModalOverlay'); });
+$('#reminderModalOverlay').addEventListener('click', function(e) { if (e.target === this) closeModal('#reminderModalOverlay'); });
+
+// Escape to close modals
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    if ($('#reminderModalOverlay').style.display === 'flex') closeModal('#reminderModalOverlay');
+    else if ($('#invoiceModalOverlay').style.display === 'flex') closeModal('#invoiceModalOverlay');
+  }
+});
+
+// Table sorting
+$('#invoiceTable').addEventListener('click', function(e) {
+  const th = e.target.closest('th[data-sort]');
+  if (!th) return;
+  const field = th.dataset.sort;
+  if (sortField === field) {
+    sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+  } else {
+    sortField = field;
+    sortDir = 'asc';
+  }
+  renderTable();
+});
+
+// Sender name persistence
+$('#senderName').addEventListener('input', function() {
+  saveSettings();
+});
+
+// ── Expose methods for inline onclick ──
+window.InvoiceChaser = {
+  markPaid,
+  editInvoice,
+  deleteInvoice,
+  openReminders,
+  toggleStage,
+  copyEmail,
+  openMailto
+};
+
+// ── Init ──
+loadSettings();
+loadInvoices();
+renderAll();
+
+})();
+</script>
+
+</body>
+</html>
