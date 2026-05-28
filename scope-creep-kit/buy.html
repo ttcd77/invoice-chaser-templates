@@ -3,147 +3,344 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buy Scope Creep Prevention Kit — $12</title>
-<meta name="description" content="Purchase the Scope Creep Prevention Kit — 5 professional templates to stop client scope creep. $12 one-time. Instant download.">
+<title>Buy Scope Creep Prevention Kit — $12 One-Time | Selfloom</title>
+<meta name="description" content="5 professional templates to stop client scope creep: proposal, SOW, change order, revision policy, pushback scripts. $12 one-time, 30-day guarantee. Instant download.">
+<meta property="og:title" content="Scope Creep Prevention Kit — $12 One-Time">
+<meta property="og:description" content="Stop working for free. 5 fill-in-the-blank templates to set boundaries with clients. Proposal, SOW, change order, revision policy, pushback emails.">
+<meta property="og:type" content="product">
+<meta property="og:url" content="https://ttcd77.github.io/invoice-chaser-templates/scope-creep-kit/buy.html">
+<meta property="og:site_name" content="Selfloom Templates">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scope Creep Prevention Kit — $12">
+<meta name="twitter:description" content="5 fill-in-the-blank templates for freelancers to stop scope creep. $12 one-time.">
 <style>
-:root { --bg: #0f0f1a; --card: #1a1a2e; --accent: #e94560; --green: #00b894; --text: #e0e0e0; --dim: #888; --border: #2d2d44; }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
-.container { max-width: 600px; margin: 0 auto; padding: 2rem 1.5rem; }
-h1 { text-align: center; font-size: 1.8rem; margin-bottom: 2rem; }
-.card { background: var(--card); border-radius: 12px; padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border); }
-.price-display { text-align: center; margin: 1.5rem 0; }
-.price-display .amount { font-size: 3rem; font-weight: 800; }
-.price-display .label { color: var(--dim); }
-.form-group { margin: 1rem 0; }
-.form-group label { display: block; margin-bottom: 0.3rem; font-weight: 600; font-size: 0.95rem; }
-.form-group input { width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 1rem; }
-.form-group input:focus { outline: none; border-color: var(--accent); }
-.btn { display: block; width: 100%; padding: 1rem; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; border: none; text-align: center; text-decoration: none; }
-.btn-buy { background: var(--accent); color: #fff; }
-.btn-buy:hover { background: #d63d56; }
-.btn-paypal { background: #0070ba; color: #fff; margin-top: 1rem; }
-.btn-paypal:hover { background: #005ea6; }
-.trust { text-align: center; color: var(--dim); font-size: 0.85rem; margin-top: 1rem; }
-.guarantee { background: rgba(0,184,148,0.1); border: 1px solid var(--green); border-radius: 8px; padding: 1rem; text-align: center; margin: 1rem 0; }
-.guarantee p { color: var(--green); font-size: 0.9rem; }
-.success { display: none; text-align: center; padding: 3rem 1rem; }
-.success h2 { color: var(--green); margin-bottom: 1rem; }
-.success p { color: var(--dim); }
-.divider { text-align: center; color: var(--dim); margin: 1rem 0; font-size: 0.9rem; }
-.what-you-get { color: var(--dim); font-size: 0.9rem; }
-.what-you-get ul { list-style: none; padding: 0; }
-.what-you-get li { padding: 0.3rem 0; }
-.what-you-get li::before { content: "✓ "; color: var(--green); }
-.back-link { text-align: center; margin-top: 2rem; }
-.back-link a { color: var(--accent); text-decoration: none; }
-.view-counter { text-align: center; font-size: 0.8rem; color: var(--dim); margin-top: 1rem; }
+:root {
+  --navy: #1a1a2e; --navy-light: #16213e; --red: #e94560; --green: #0f9b5a;
+  --green-light: #e6f7ee; --blue: #0070ba; --blue-light: #e8f1fb;
+  --purple: #7c3aed; --purple-light: #f3f0ff;
+  --gray-50: #f8f9fa; --gray-100: #f1f3f5; --gray-200: #e9ecef;
+  --gray-500: #6c757d; --gray-700: #495057; --gray-900: #212529;
+  --radius: 10px; --shadow: 0 2px 8px rgba(0,0,0,0.08); --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: #f4f5f7; color: var(--gray-900); line-height: 1.6; min-height: 100vh; }
+.container { max-width: 680px; margin: 0 auto; padding: 24px 20px 120px; }
+
+/* ── Header ── */
+.header { background: linear-gradient(135deg, #2d1744 0%, #4c1d95 100%); color: #fff; text-align: center; padding: 36px 20px 44px; }
+.header .badge { display: inline-block; background: var(--red); color: #fff; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+.header h1 { font-size: 26px; margin-bottom: 8px; }
+.header .sub { opacity: 0.85; font-size: 14px; max-width: 480px; margin: 0 auto 16px; }
+.header-nav { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.header-nav a { color: rgba(255,255,255,0.65); font-size: 12px; text-decoration: none; padding: 4px 8px; border-radius: 4px; transition: all 0.15s; }
+.header-nav a:hover { color: #fff; background: rgba(255,255,255,0.1); }
+
+/* ── Card ── */
+.card { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow-lg); padding: 32px; margin-top: -12px; position: relative; z-index: 1; }
+
+/* ── Preview Gallery ── */
+.previews { margin-bottom: 28px; }
+.previews h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray-500); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+.previews h3 .icon { font-size: 16px; }
+.preview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.preview-card { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 14px; overflow: hidden; min-height: 90px; display: flex; flex-direction: column; justify-content: center; }
+.preview-card .doc-icon { font-size: 22px; margin-bottom: 6px; }
+.preview-card .doc-name { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.preview-card .doc-desc { font-size: 11px; color: var(--gray-500); line-height: 1.4; }
+.preview-more { text-align: center; grid-column: 1 / -1; padding: 8px; font-size: 12px; color: var(--gray-500); }
+.preview-more span { color: var(--purple); font-weight: 600; }
+
+/* ── Price Block ── */
+.price-block { text-align: center; padding: 20px 0; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); margin-bottom: 20px; }
+.price-main { display: flex; align-items: baseline; justify-content: center; gap: 8px; }
+.price-amount { font-size: 44px; font-weight: 800; color: var(--navy); }
+.price-original { font-size: 18px; color: var(--gray-400); text-decoration: line-through; }
+.price-label { color: var(--gray-500); font-size: 14px; margin-top: 2px; }
+.price-save { display: inline-block; background: var(--green-light); color: var(--green); font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 12px; margin-top: 6px; }
+.guarantee-row { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 10px; color: var(--green); font-size: 13px; font-weight: 600; }
+
+/* ── PayPal Section ── */
+.paypal-section { background: var(--blue-light); border: 2px solid var(--blue); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 20px; text-align: center; }
+.paypal-section h3 { font-size: 15px; color: var(--blue); margin-bottom: 6px; }
+.paypal-section .sub { font-size: 13px; color: var(--gray-700); margin-bottom: 12px; }
+.paypal-btn { display: inline-block; padding: 14px 36px; background: var(--blue); color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; font-family: var(--font); text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; }
+.paypal-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,112,186,0.3); }
+.paypal-placeholder { display: inline-block; padding: 14px 36px; background: var(--gray-200); color: var(--gray-500); border-radius: 8px; font-size: 15px; font-weight: 600; font-family: var(--font); }
+.paypal-divider { display: flex; align-items: center; gap: 12px; margin: 20px 0; color: var(--gray-500); font-size: 12px; }
+.paypal-divider::before, .paypal-divider::after { content: ""; flex: 1; border-bottom: 1px solid var(--gray-200); }
+
+/* ── Form ── */
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 5px; color: var(--gray-700); }
+.form-group input { width: 100%; padding: 13px 14px; border: 2px solid var(--gray-200); border-radius: 8px; font-size: 15px; font-family: var(--font); transition: border-color 0.2s; background: #fff; }
+.form-group input:focus { outline: none; border-color: var(--purple); }
+.form-group .hint { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
+.btn { display: block; width: 100%; padding: 16px; background: var(--purple); color: #fff; border: none; border-radius: 8px; font-size: 17px; font-weight: 600; cursor: pointer; font-family: var(--font); transition: transform 0.15s, box-shadow 0.15s; }
+.btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(124,58,237,0.3); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* ── Social Proof ── */
+.social-proof { margin: 24px 0; padding: 16px 20px; background: var(--purple-light); border-left: 4px solid var(--purple); border-radius: 0 var(--radius) var(--radius) 0; }
+.social-proof .quote { font-size: 13px; color: var(--gray-700); font-style: italic; line-height: 1.5; }
+.social-proof .source { font-size: 11px; color: var(--gray-500); margin-top: 4px; }
+
+/* ── Trust Row ── */
+.trust-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+.trust-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--gray-500); }
+.trust-item .tick { color: var(--green); font-weight: 700; }
+
+/* ── Cross-sell ── */
+.cross-sell { margin-top: 20px; padding: 16px; background: #fef9e7; border: 1px solid #f0a500; border-radius: var(--radius); text-align: center; }
+.cross-sell p { font-size: 13px; color: var(--gray-700); margin-bottom: 8px; }
+.cross-sell a { color: var(--navy); font-weight: 700; font-size: 13px; }
+
+/* ── Sticky CTA Bar ── */
+.sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 2px solid var(--gray-200); padding: 12px 20px; display: none; align-items: center; justify-content: center; gap: 16px; z-index: 100; box-shadow: 0 -2px 12px rgba(0,0,0,0.08); }
+.sticky-cta.show { display: flex; }
+.sticky-cta .sticky-price { font-size: 18px; font-weight: 800; color: var(--navy); white-space: nowrap; }
+.sticky-cta .sticky-guarantee { font-size: 11px; color: var(--green); white-space: nowrap; }
+.sticky-cta .btn-sticky { padding: 12px 28px; background: var(--purple); color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: var(--font); white-space: nowrap; }
+.sticky-cta .btn-sticky:hover { background: #6d28d9; }
+
+/* ── Success ── */
+.success { display: none; text-align: center; padding: 40px 20px; }
+.success.show { display: block; }
+.success .icon { font-size: 56px; margin-bottom: 12px; }
+.success h2 { font-size: 22px; color: var(--navy); margin-bottom: 10px; }
+.success p { color: var(--gray-500); font-size: 14px; margin-bottom: 6px; max-width: 440px; margin-left: auto; margin-right: auto; }
+.form-container.hidden { display: none; }
+.form-container.hidden ~ .success.show { display: block; }
+
+/* ── Footer ── */
+footer { text-align: center; padding: 40px 20px; color: var(--gray-500); font-size: 12px; }
+footer a { color: var(--gray-500); }
+
+@media (max-width: 480px) {
+  .preview-grid { grid-template-columns: 1fr; }
+  .header h1 { font-size: 22px; }
+  .price-amount { font-size: 36px; }
+  .sticky-cta { padding: 10px 12px; gap: 10px; }
+}
 </style>
 </head>
 <body>
+
+<div class="header">
+  <div class="badge">Launch Price — Limited Time</div>
+  <h1>Scope Creep Prevention Kit</h1>
+  <p class="sub">5 professional, fill-in-the-blank templates to stop clients from expanding projects without paying. Set boundaries once, use forever.</p>
+  <div class="header-nav">
+    <a href="../index.html">Home</a>
+    <a href="index.html">Product Page</a>
+    <a href="free-sample.html">Free Sample</a>
+    <a href="../buy.html">Invoice Chaser — $9</a>
+  </div>
+</div>
+
 <div class="container">
-
-<h1>Complete Your Purchase</h1>
-
-<div id="checkout-form">
   <div class="card">
-    <div class="price-display">
-      <div class="amount">$12</div>
-      <div class="label">One-time purchase. Lifetime access.</div>
+
+    <div class="form-container" id="formContainer">
+
+      <!-- Preview Gallery -->
+      <div class="previews">
+        <h3><span class="icon">👁</span> See What You're Getting — 5 Professional Templates</h3>
+        <div class="preview-grid">
+          <div class="preview-card">
+            <div class="doc-icon">📋</div>
+            <div class="doc-name">Client Proposal Template</div>
+            <div class="doc-desc">Project overview, scope table with hours &amp; deadlines, key assumptions, explicit "what's NOT included" section to prevent future scope creep.</div>
+          </div>
+          <div class="preview-card">
+            <div class="doc-icon">📜</div>
+            <div class="doc-name">Scope of Work Agreement</div>
+            <div class="doc-desc">Legally-clear SOW with deliverables table, payment schedule, revision policy, termination clause. Template language, not legal advice.</div>
+          </div>
+          <div class="preview-card">
+            <div class="doc-icon">📝</div>
+            <div class="doc-name">Change Order Request Form</div>
+            <div class="doc-desc">Form clients fill out BEFORE extra work begins. Captures: what changed, why, cost impact, timeline impact, approval signature block.</div>
+          </div>
+          <div class="preview-card">
+            <div class="doc-icon">📄</div>
+            <div class="doc-name">Revision Policy One-Pager</div>
+            <div class="doc-desc">Clear policy: what counts as a revision vs. new work, how many rounds included, what happens after. Attach to every proposal.</div>
+          </div>
+          <div class="preview-card">
+            <div class="doc-icon">✉️</div>
+            <div class="doc-name">5 Pushback Email Scripts</div>
+            <div class="doc-desc">Scripts for: "that's out of scope", "happy to do it — here's the cost", "let's do a change order", "no, but here's why", polite escalation.</div>
+          </div>
+        </div>
+        <div class="preview-more">All templates in <span>DOCX + Markdown</span> — fill in blanks, send to client. Also get 3 free pushback scripts on the <span>free sample page.</span></div>
+      </div>
+
+      <!-- Price -->
+      <div class="price-block">
+        <div class="price-main">
+          <span class="price-amount">$12</span>
+          <span class="price-original">$25</span>
+        </div>
+        <div class="price-label">One-time purchase. Lifetime access. No subscription.</div>
+        <div class="price-save">Save $13 — Launch price</div>
+        <div class="guarantee-row">🛡 30-day money-back guarantee — if these don't save you at least $12 in unpaid scope creep, full refund.</div>
+      </div>
+
+      <!-- PayPal Fast Pay -->
+      <div class="paypal-section" id="paypalSection">
+        <h3>⚡ Pay instantly with PayPal</h3>
+        <p class="sub">Fastest way to get the templates. Instant download after payment.</p>
+        <a class="paypal-placeholder" id="paypalLink" href="#" onclick="return false;">PayPal checkout — available soon (use form below)</a>
+      </div>
+
+      <div class="paypal-divider">or enter your details below</div>
+
+      <div id="errorBox" style="display:none; background:#fde8ec; color:#c0392b; padding:12px; border-radius:8px; margin-bottom:14px; font-size:13px;"></div>
+
+      <div class="form-group">
+        <label for="email">Your email address</label>
+        <input type="email" id="email" placeholder="you@example.com" required autocomplete="email">
+        <div class="hint">Your download link will be sent here. No spam, ever.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Your name (optional)</label>
+        <input type="text" id="name" placeholder="Jane Smith">
+      </div>
+
+      <button class="btn" id="buyBtn" onclick="submitOrder()">Get Scope Creep Kit — $12</button>
+
+      <!-- Social Proof -->
+      <div class="social-proof">
+        <div class="quote">"My client asked for 'just one more thing' and now I'm 3 weeks past deadline with no extra pay. I need a way to say no that doesn't burn the relationship."</div>
+        <div class="source">— r/freelance, 162 upvotes</div>
+      </div>
+      <div class="social-proof" style="background:#fef9e7; border-left-color:#f0a500;">
+        <div class="quote">"The Contract Shop sells single templates for $75-250. This kit gives you 5 templates for $12 — fill in the blanks and you're protected."</div>
+        <div class="source">— Why we built this</div>
+      </div>
+
+      <div class="trust-row">
+        <div class="trust-item"><span class="tick">✓</span> 30-day refund</div>
+        <div class="trust-item"><span class="tick">✓</span> Instant download</div>
+        <div class="trust-item"><span class="tick">✓</span> No subscription</div>
+        <div class="trust-item"><span class="tick">✓</span> DOCX + MD format</div>
+      </div>
+
+      <!-- Cross-sell -->
+      <div class="cross-sell">
+        <p>💡 <strong>Also chasing late payments?</strong> Get the Invoice Chaser pack — 5 email templates + tracking spreadsheet for $9.</p>
+        <a href="../buy.html">→ Buy Invoice Chaser ($9) instead</a>
+      </div>
+
+      <!-- What's included mini -->
+      <div style="margin-top:16px; padding:16px; background:var(--gray-50); border-radius:var(--radius); font-size:13px; color:var(--gray-700);">
+        <strong style="color:var(--purple);">Includes:</strong> 5 templates (DOCX + MD) · Fill-in-the-blank format · Instant download ZIP · Free sample available · No software needed · Works on any device
+      </div>
     </div>
 
-    <div class="what-you-get">
-      <p style="margin-bottom:0.5rem;"><strong>You'll receive:</strong></p>
-      <ul>
-        <li>Client Proposal Template (DOCX + MD)</li>
-        <li>Scope of Work Agreement (DOCX + MD)</li>
-        <li>Change Order Request Form (DOCX + MD)</li>
-        <li>Revision Policy One-Pager (DOCX + MD)</li>
-        <li>5 Pushback Email Scripts (DOCX + MD)</li>
-        <li>Free sample included</li>
-      </ul>
+    <!-- Success state -->
+    <div class="success" id="successState">
+      <div class="icon">📬</div>
+      <h2>Order received!</h2>
+      <p>We'll send a payment link to <strong id="confirmedEmail" style="color:var(--navy);">you@example.com</strong> — usually within a few hours.</p>
+      <p style="font-size:13px; margin-top:12px;">Check your inbox for an email from <strong>hello@selfloom.ai</strong>. Complete payment → instant download.</p>
+      <p style="margin-top:16px; font-size:13px;">Questions? <a href="mailto:hello@selfloom.ai" style="color:var(--purple);">hello@selfloom.ai</a></p>
+      <a href="./" style="display:inline-block; margin-top:24px; color:var(--purple); font-weight:600; text-decoration:none;">← Back to product page</a>
     </div>
-  </div>
 
-  <!-- PayPal Fast-Pay Section -->
-  <div class="card" id="paypal-section">
-    <p style="text-align:center;font-weight:600;">Pay instantly with PayPal</p>
-    <p style="text-align:center;color:var(--dim);font-size:0.9rem;margin-bottom:1rem;">After payment, email hello@selfloom.ai with your transaction ID for instant download</p>
-    <a href="#" id="paypal-link" class="btn btn-paypal">Pay with PayPal</a>
-    <p style="text-align:center;color:var(--dim);font-size:0.8rem;margin-top:0.5rem;">You'll be redirected to PayPal to complete payment</p>
-  </div>
-
-  <div class="divider">— or —</div>
-
-  <!-- Manual Fulfillment -->
-  <div class="card">
-    <p style="text-align:center;font-weight:600;margin-bottom:1rem;">Manual checkout — we'll send a payment link</p>
-    <div class="form-group">
-      <label>Your email address</label>
-      <input type="email" id="email" placeholder="you@example.com" required>
-    </div>
-    <button class="btn btn-buy" onclick="submitOrder()">Send Me the Payment Link</button>
-    <p style="text-align:center;color:var(--dim);font-size:0.8rem;margin-top:0.5rem;">We'll email you a payment link within 24 hours. Instant download after payment.</p>
-  </div>
-
-  <div class="guarantee">
-    <p><strong>30-Day Money-Back Guarantee</strong></p>
-    <p>If these templates don't help you reclaim at least $12 worth of unpaid scope creep work, email for a full refund. No questions asked.</p>
-  </div>
-
-  <div class="trust">
-    <p>Secure checkout · No subscription · Instant download · 30-day refund</p>
   </div>
 </div>
 
-<div class="success" id="success">
-  <h2>Thanks — check your inbox!</h2>
-  <p>We'll send a payment link to your email within 24 hours. Once paid, you'll get instant access to all 5 templates.</p>
-  <p style="margin-top:1rem;">Questions? <a href="mailto:hello@selfloom.ai" style="color:var(--accent);">hello@selfloom.ai</a></p>
+<!-- Sticky CTA Bar -->
+<div class="sticky-cta" id="stickyCta">
+  <span class="sticky-price">$12 one-time</span>
+  <span class="sticky-guarantee">30-day refund</span>
+  <button class="btn-sticky" onclick="scrollToTop()">Get Scope Creep Kit</button>
 </div>
 
-<div class="back-link">
-  ← <a href="index.html">Back to Scope Creep Prevention Kit</a>
-</div>
-
-<div class="view-counter" id="view-counter">Views: ...</div>
-
-</div>
+<footer>
+  Scope Creep Prevention Kit by <a href="../">Selfloom</a> · Questions? hello@selfloom.ai
+</footer>
 
 <script>
-// PayPal.me configuration — set your PayPal link here:
-var PAYPAL_ME_URL = '';
-if (PAYPAL_ME_URL) {
-  document.getElementById('paypal-link').href = PAYPAL_ME_URL + '/12usd';
-} else {
-  document.getElementById('paypal-section').style.opacity = '0.5';
-  document.getElementById('paypal-link').href = '#';
-  document.getElementById('paypal-link').onclick = function(e) { e.preventDefault(); alert('PayPal link not yet configured. Use the manual checkout below.'); };
-}
-
-function submitOrder() {
-  var email = document.getElementById('email').value.trim();
-  if (!email || email.indexOf('@') < 0) {
-    alert('Please enter a valid email address.');
-    return;
-  }
-  // Store purchase intent
-  var orders = JSON.parse(localStorage.getItem('scope-creep-orders') || '[]');
-  orders.push({ email: email, timestamp: new Date().toISOString(), product: 'Scope Creep Prevention Kit', amount: 12 });
-  localStorage.setItem('scope-creep-orders', JSON.stringify(orders));
-  document.getElementById('checkout-form').style.display = 'none';
-  document.getElementById('success').style.display = 'block';
-}
-
-// View counter
 (function() {
-  var key = 'scope-creep-buy-views';
-  var views = parseInt(localStorage.getItem(key) || '0');
-  views++;
-  localStorage.setItem(key, views.toString());
-  document.getElementById('view-counter').textContent = 'Page views: ' + views + ' (local only)';
+  var STORAGE_KEY = 'sc_purchase_intents';
+  var VIEW_KEY = 'sc_page_views';
+  var PAYPAL_ME_URL = ''; // <-- SET THIS: e.g. 'https://paypal.me/selfloom/12'
+  var submitted = false;
+
+  function trackView() {
+    try {
+      var views = JSON.parse(localStorage.getItem(VIEW_KEY) || '{"total":0,"dates":{}}');
+      var today = new Date().toISOString().slice(0,10);
+      views.total++;
+      views.dates[today] = (views.dates[today] || 0) + 1;
+      localStorage.setItem(VIEW_KEY, JSON.stringify(views));
+    } catch(e) {}
+  }
+
+  function activatePayPal() {
+    if (!PAYPAL_ME_URL) {
+      document.getElementById('paypalLink').className = 'paypal-placeholder';
+      document.getElementById('paypalLink').textContent = 'PayPal checkout — available soon (use form below)';
+      document.getElementById('paypalLink').onclick = function() { return false; };
+      return;
+    }
+    var link = document.getElementById('paypalLink');
+    link.className = 'paypal-btn';
+    link.href = PAYPAL_ME_URL;
+    link.textContent = 'Pay $12 with PayPal';
+    link.target = '_blank';
+    link.rel = 'noopener';
+  }
+
+  function initStickyCta() {
+    var sticky = document.getElementById('stickyCta');
+    var form = document.getElementById('formContainer');
+    window.addEventListener('scroll', function() {
+      if (submitted) { sticky.classList.remove('show'); return; }
+      var formBottom = form.getBoundingClientRect().bottom;
+      if (formBottom < -100) { sticky.classList.add('show'); }
+      else { sticky.classList.remove('show'); }
+    });
+  }
+
+  window.scrollToTop = function() {
+    document.getElementById('formContainer').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('email').focus();
+  };
+
+  window.submitOrder = function() {
+    if (submitted) return;
+    var emailInput = document.getElementById('email');
+    var nameInput = document.getElementById('name');
+    var errorBox = document.getElementById('errorBox');
+    var email = emailInput.value.trim();
+    var name = nameInput.value.trim();
+    if (!email || email.indexOf('@') === -1) { errorBox.textContent = 'Please enter a valid email address.'; errorBox.style.display = 'block'; emailInput.focus(); return; }
+    errorBox.style.display = 'none';
+    submitted = true;
+    document.getElementById('buyBtn').disabled = true;
+    document.getElementById('buyBtn').textContent = 'Processing...';
+    document.getElementById('stickyCta').classList.remove('show');
+    try {
+      var intents = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      intents.push({ name: name, email: email, ts: new Date().toISOString(), product: 'Scope Creep Prevention Kit', amount: 12 });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(intents));
+    } catch(e) {}
+    document.getElementById('confirmedEmail').textContent = email;
+    document.getElementById('formContainer').classList.add('hidden');
+    document.getElementById('successState').classList.add('show');
+  };
+
+  document.addEventListener('keydown', function(e) { if (e.key === 'Enter' && !submitted) submitOrder(); });
+
+  trackView();
+  activatePayPal();
+  initStickyCta();
 })();
 </script>
-
 </body>
 </html>
