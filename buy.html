@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buy Invoice Chaser Template Pack — $9</title>
+<style>
+:root {
+  --navy: #1a1a2e;
+  --navy-light: #16213e;
+  --red: #e94560;
+  --green: #0f9b5a;
+  --gray-50: #f8f9fa;
+  --gray-100: #f1f3f5;
+  --gray-200: #e9ecef;
+  --gray-500: #6c757d;
+  --gray-700: #495057;
+  --gray-900: #212529;
+  --radius: 10px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: #f4f5f7;
+  color: var(--gray-900);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+.container { max-width: 640px; margin: 0 auto; padding: 32px 20px 80px; }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, var(--navy) 0%, #1f3460 100%);
+  color: #fff; text-align: center; padding: 40px 20px;
+}
+.header h1 { font-size: 28px; margin-bottom: 8px; }
+.header p { opacity: 0.85; font-size: 15px; max-width: 500px; margin: 0 auto; }
+.back-link { display: inline-block; margin-top: 16px; color: rgba(255,255,255,0.7); font-size: 13px; text-decoration: none; }
+.back-link:hover { color: #fff; }
+
+/* Card */
+.card {
+  background: #fff; border-radius: var(--radius);
+  box-shadow: var(--shadow-lg); padding: 32px; margin-top: -16px;
+  position: relative; z-index: 1;
+}
+
+/* Product summary */
+.product-title { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.product-subtitle { color: var(--gray-500); font-size: 14px; margin-bottom: 20px; }
+
+/* What's included */
+.includes { background: var(--gray-50); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 24px; }
+.includes h3 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray-500); margin-bottom: 12px; }
+.includes ul { list-style: none; padding: 0; }
+.includes li { padding: 6px 0; font-size: 14px; color: var(--gray-700); display: flex; align-items: center; gap: 8px; }
+.includes li::before { content: "✓"; color: var(--green); font-weight: 700; font-size: 16px; }
+
+/* Price */
+.price-block { text-align: center; padding: 24px 0; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); margin-bottom: 24px; }
+.price { font-size: 42px; font-weight: 800; color: var(--navy); }
+.price-sub { color: var(--gray-500); font-size: 14px; margin-top: 4px; }
+.guarantee { color: var(--green); font-size: 13px; margin-top: 8px; font-weight: 500; }
+
+/* Form */
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: var(--gray-700); }
+.form-group input { width: 100%; padding: 12px 14px; border: 2px solid var(--gray-200); border-radius: 8px; font-size: 15px; font-family: var(--font); transition: border-color 0.2s; }
+.form-group input:focus { outline: none; border-color: var(--navy); }
+.form-group .hint { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
+
+.btn {
+  display: block; width: 100%; padding: 16px;
+  background: var(--red); color: #fff; border: none; border-radius: 8px;
+  font-size: 17px; font-weight: 600; cursor: pointer; font-family: var(--font);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(233, 69, 96, 0.3); }
+.btn:active { transform: translateY(0); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* How it works */
+.how-it-works { margin-top: 28px; padding: 20px; background: #fff8e1; border-radius: var(--radius); border: 1px solid #ffe082; }
+.how-it-works h3 { font-size: 14px; color: #f57f17; margin-bottom: 10px; }
+.how-it-works ol { padding-left: 20px; font-size: 13px; color: var(--gray-700); line-height: 1.8; }
+
+/* Trust */
+.trust { margin-top: 20px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.trust-item { font-size: 12px; color: var(--gray-500); text-align: center; }
+
+/* Success state */
+.success { display: none; text-align: center; padding: 40px 20px; }
+.success.show { display: block; }
+.success .icon { font-size: 64px; margin-bottom: 16px; }
+.success h2 { font-size: 24px; color: var(--navy); margin-bottom: 12px; }
+.success p { color: var(--gray-500); font-size: 15px; margin-bottom: 6px; max-width: 460px; margin-left: auto; margin-right: auto; }
+.success .email-confirmed { font-weight: 700; color: var(--navy); background: var(--gray-100); padding: 2px 8px; border-radius: 4px; }
+.success .next-steps { text-align: left; background: var(--gray-50); border-radius: var(--radius); padding: 20px; margin-top: 24px; }
+.success .next-steps h3 { font-size: 14px; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+.success .next-steps ol { padding-left: 20px; font-size: 14px; color: var(--gray-700); line-height: 2; }
+
+.form-container.show ~ .success { display: none; }
+.form-container.hidden { display: none; }
+.form-container.hidden ~ .success.show { display: block; }
+
+footer { text-align: center; padding: 40px 20px; color: var(--gray-500); font-size: 12px; }
+footer a { color: var(--gray-500); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Invoice Chaser Template Pack</h1>
+  <p>5 human-toned email templates, tracking spreadsheet, and follow-up schedule — so you stop chasing and start getting paid.</p>
+  <a href="./" class="back-link">← Back to free demo tool</a>
+</div>
+
+<div class="container">
+  <div class="card">
+
+    <!-- Form state -->
+    <div class="form-container" id="formContainer">
+      <div class="product-title">Invoice Chaser — Complete Template Pack</div>
+      <div class="product-subtitle">Everything you need to follow up on late payments without the awkwardness.</div>
+
+      <div class="includes">
+        <h3>What's Included</h3>
+        <ul>
+          <li>5 email templates (Gentle Reminder → Final Notice)</li>
+          <li>Invoice tracking spreadsheet (CSV, works in Excel/Sheets/Numbers)</li>
+          <li>Follow-up schedule (when to send each, when to escalate)</li>
+          <li>Pricing page copy (resell the pack yourself if you want)</li>
+          <li>Instant download — ZIP file delivered by email</li>
+        </ul>
+      </div>
+
+      <div class="price-block">
+        <div class="price">$9</div>
+        <div class="price-sub">One-time payment. No subscription. No upsells.</div>
+        <div class="guarantee">30-day money-back guarantee — if these templates don't help you collect a late payment, I'll refund every cent.</div>
+      </div>
+
+      <div id="errorBox" style="display:none; background:#fde8ec; color:#c0392b; padding:12px; border-radius:8px; margin-bottom:16px; font-size:14px;"></div>
+
+      <div class="form-group">
+        <label for="email">Your email address</label>
+        <input type="email" id="email" placeholder="you@example.com" required autocomplete="email">
+        <div class="hint">We'll send your download link to this address. No spam, ever.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Your name (optional)</label>
+        <input type="text" id="name" placeholder="Jane Smith">
+      </div>
+
+      <button class="btn" id="buyBtn" onclick="submitOrder()">
+        Buy Now — $9
+      </button>
+
+      <div class="how-it-works">
+        <h3>How this works</h3>
+        <ol>
+          <li>Enter your email above and click "Buy Now"</li>
+          <li>You'll receive a payment link within 24 hours (usually much faster)</li>
+          <li>After payment, you get an instant download link for the full ZIP pack</li>
+        </ol>
+      </div>
+
+      <div class="trust">
+        <div class="trust-item">30-day refund</div>
+        <div class="trust-item">No spam</div>
+        <div class="trust-item">Secure manual fulfillment</div>
+      </div>
+    </div>
+
+    <!-- Success state -->
+    <div class="success" id="successState">
+      <div class="icon">📬</div>
+      <h2>Order received!</h2>
+      <p>We'll send a payment link to <span class="email-confirmed" id="confirmedEmail">you@example.com</span> — usually within a few hours.</p>
+      <div class="next-steps">
+        <h3>What happens next</h3>
+        <ol>
+          <li>Check your inbox for an email from <strong>hello@selfloom.ai</strong></li>
+          <li>Click the payment link in the email (PayPal, card, or bank transfer)</li>
+          <li>Complete payment → receive instant download link</li>
+          <li>Unzip and start using the templates today</li>
+        </ol>
+      </div>
+      <p style="margin-top: 20px; font-size: 14px;">Questions? Reply to the email or contact <strong>hello@selfloom.ai</strong> anytime.</p>
+      <a href="./" style="display: inline-block; margin-top: 24px; color: var(--navy); font-weight: 600; text-decoration: none;">← Back to free demo</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  Invoice Chaser by <a href="https://github.com/ttcd77/invoice-chaser-templates">Selfloom</a> · Questions? hello@selfloom.ai
+</footer>
+
+<script>
+(function() {
+  var STORAGE_KEY = 'ic_purchase_intents';
+  var submitted = false;
+
+  // Read existing intents
+  function loadIntents() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch(e) { return []; }
+  }
+
+  // Save a new intent
+  function saveIntent(name, email) {
+    var intents = loadIntents();
+    intents.push({ name: name, email: email, ts: new Date().toISOString() });
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(intents)); } catch(e) {}
+  }
+
+  // Expose as global since we use onclick
+  window.submitOrder = function() {
+    if (submitted) return;
+
+    var emailInput = document.getElementById('email');
+    var nameInput = document.getElementById('name');
+    var errorBox = document.getElementById('errorBox');
+    var email = emailInput.value.trim();
+    var name = nameInput.value.trim();
+
+    // Validate
+    if (!email || email.indexOf('@') === -1) {
+      errorBox.textContent = 'Please enter a valid email address.';
+      errorBox.style.display = 'block';
+      emailInput.focus();
+      return;
+    }
+
+    errorBox.style.display = 'none';
+    submitted = true;
+    document.getElementById('buyBtn').disabled = true;
+    document.getElementById('buyBtn').textContent = 'Processing...';
+
+    // Save intent
+    saveIntent(name, email);
+
+    // Show success
+    document.getElementById('confirmedEmail').textContent = email;
+    document.getElementById('formContainer').classList.add('hidden');
+    document.getElementById('successState').classList.add('show');
+
+    // Also log to console for easy inspection
+    console.log('Purchase intent recorded:', { name: name, email: email, ts: new Date().toISOString() });
+    console.log('All intents:', loadIntents());
+  };
+
+  // Enter key submits
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !submitted) {
+      submitOrder();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
