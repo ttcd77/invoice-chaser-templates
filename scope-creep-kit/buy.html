@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buy Scope Creep Prevention Kit — $12</title>
+<meta name="description" content="Purchase the Scope Creep Prevention Kit — 5 professional templates to stop client scope creep. $12 one-time. Instant download.">
+<style>
+:root { --bg: #0f0f1a; --card: #1a1a2e; --accent: #e94560; --green: #00b894; --text: #e0e0e0; --dim: #888; --border: #2d2d44; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+.container { max-width: 600px; margin: 0 auto; padding: 2rem 1.5rem; }
+h1 { text-align: center; font-size: 1.8rem; margin-bottom: 2rem; }
+.card { background: var(--card); border-radius: 12px; padding: 2rem; margin: 1.5rem 0; border: 1px solid var(--border); }
+.price-display { text-align: center; margin: 1.5rem 0; }
+.price-display .amount { font-size: 3rem; font-weight: 800; }
+.price-display .label { color: var(--dim); }
+.form-group { margin: 1rem 0; }
+.form-group label { display: block; margin-bottom: 0.3rem; font-weight: 600; font-size: 0.95rem; }
+.form-group input { width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 1rem; }
+.form-group input:focus { outline: none; border-color: var(--accent); }
+.btn { display: block; width: 100%; padding: 1rem; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; border: none; text-align: center; text-decoration: none; }
+.btn-buy { background: var(--accent); color: #fff; }
+.btn-buy:hover { background: #d63d56; }
+.btn-paypal { background: #0070ba; color: #fff; margin-top: 1rem; }
+.btn-paypal:hover { background: #005ea6; }
+.trust { text-align: center; color: var(--dim); font-size: 0.85rem; margin-top: 1rem; }
+.guarantee { background: rgba(0,184,148,0.1); border: 1px solid var(--green); border-radius: 8px; padding: 1rem; text-align: center; margin: 1rem 0; }
+.guarantee p { color: var(--green); font-size: 0.9rem; }
+.success { display: none; text-align: center; padding: 3rem 1rem; }
+.success h2 { color: var(--green); margin-bottom: 1rem; }
+.success p { color: var(--dim); }
+.divider { text-align: center; color: var(--dim); margin: 1rem 0; font-size: 0.9rem; }
+.what-you-get { color: var(--dim); font-size: 0.9rem; }
+.what-you-get ul { list-style: none; padding: 0; }
+.what-you-get li { padding: 0.3rem 0; }
+.what-you-get li::before { content: "✓ "; color: var(--green); }
+.back-link { text-align: center; margin-top: 2rem; }
+.back-link a { color: var(--accent); text-decoration: none; }
+.view-counter { text-align: center; font-size: 0.8rem; color: var(--dim); margin-top: 1rem; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Complete Your Purchase</h1>
+
+<div id="checkout-form">
+  <div class="card">
+    <div class="price-display">
+      <div class="amount">$12</div>
+      <div class="label">One-time purchase. Lifetime access.</div>
+    </div>
+
+    <div class="what-you-get">
+      <p style="margin-bottom:0.5rem;"><strong>You'll receive:</strong></p>
+      <ul>
+        <li>Client Proposal Template (DOCX + MD)</li>
+        <li>Scope of Work Agreement (DOCX + MD)</li>
+        <li>Change Order Request Form (DOCX + MD)</li>
+        <li>Revision Policy One-Pager (DOCX + MD)</li>
+        <li>5 Pushback Email Scripts (DOCX + MD)</li>
+        <li>Free sample included</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PayPal Fast-Pay Section -->
+  <div class="card" id="paypal-section">
+    <p style="text-align:center;font-weight:600;">Pay instantly with PayPal</p>
+    <p style="text-align:center;color:var(--dim);font-size:0.9rem;margin-bottom:1rem;">After payment, email hello@selfloom.ai with your transaction ID for instant download</p>
+    <a href="#" id="paypal-link" class="btn btn-paypal">Pay with PayPal</a>
+    <p style="text-align:center;color:var(--dim);font-size:0.8rem;margin-top:0.5rem;">You'll be redirected to PayPal to complete payment</p>
+  </div>
+
+  <div class="divider">— or —</div>
+
+  <!-- Manual Fulfillment -->
+  <div class="card">
+    <p style="text-align:center;font-weight:600;margin-bottom:1rem;">Manual checkout — we'll send a payment link</p>
+    <div class="form-group">
+      <label>Your email address</label>
+      <input type="email" id="email" placeholder="you@example.com" required>
+    </div>
+    <button class="btn btn-buy" onclick="submitOrder()">Send Me the Payment Link</button>
+    <p style="text-align:center;color:var(--dim);font-size:0.8rem;margin-top:0.5rem;">We'll email you a payment link within 24 hours. Instant download after payment.</p>
+  </div>
+
+  <div class="guarantee">
+    <p><strong>30-Day Money-Back Guarantee</strong></p>
+    <p>If these templates don't help you reclaim at least $12 worth of unpaid scope creep work, email for a full refund. No questions asked.</p>
+  </div>
+
+  <div class="trust">
+    <p>Secure checkout · No subscription · Instant download · 30-day refund</p>
+  </div>
+</div>
+
+<div class="success" id="success">
+  <h2>Thanks — check your inbox!</h2>
+  <p>We'll send a payment link to your email within 24 hours. Once paid, you'll get instant access to all 5 templates.</p>
+  <p style="margin-top:1rem;">Questions? <a href="mailto:hello@selfloom.ai" style="color:var(--accent);">hello@selfloom.ai</a></p>
+</div>
+
+<div class="back-link">
+  ← <a href="index.html">Back to Scope Creep Prevention Kit</a>
+</div>
+
+<div class="view-counter" id="view-counter">Views: ...</div>
+
+</div>
+
+<script>
+// PayPal.me configuration — set your PayPal link here:
+var PAYPAL_ME_URL = '';
+if (PAYPAL_ME_URL) {
+  document.getElementById('paypal-link').href = PAYPAL_ME_URL + '/12usd';
+} else {
+  document.getElementById('paypal-section').style.opacity = '0.5';
+  document.getElementById('paypal-link').href = '#';
+  document.getElementById('paypal-link').onclick = function(e) { e.preventDefault(); alert('PayPal link not yet configured. Use the manual checkout below.'); };
+}
+
+function submitOrder() {
+  var email = document.getElementById('email').value.trim();
+  if (!email || email.indexOf('@') < 0) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  // Store purchase intent
+  var orders = JSON.parse(localStorage.getItem('scope-creep-orders') || '[]');
+  orders.push({ email: email, timestamp: new Date().toISOString(), product: 'Scope Creep Prevention Kit', amount: 12 });
+  localStorage.setItem('scope-creep-orders', JSON.stringify(orders));
+  document.getElementById('checkout-form').style.display = 'none';
+  document.getElementById('success').style.display = 'block';
+}
+
+// View counter
+(function() {
+  var key = 'scope-creep-buy-views';
+  var views = parseInt(localStorage.getItem(key) || '0');
+  views++;
+  localStorage.setItem(key, views.toString());
+  document.getElementById('view-counter').textContent = 'Page views: ' + views + ' (local only)';
+})();
+</script>
+
+</body>
+</html>
