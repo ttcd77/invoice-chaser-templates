@@ -336,7 +336,7 @@ footer a { color: var(--gray-500); }
   function activatePayPal() {
     if (!PAYPAL_ME_URL) {
       document.getElementById('paypalLink').className = 'paypal-placeholder';
-      document.getElementById('paypalLink').textContent = 'PayPal checkout — available soon (use form below)';
+      document.getElementById('paypalLink').textContent = 'PayPal checkout unavailable — use the form below';
       document.getElementById('paypalLink').onclick = function() { return false; };
       return;
     }
