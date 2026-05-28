@@ -243,7 +243,7 @@ footer a { color: var(--gray-500); }
       <div class="paypal-section" id="paypalSection">
         <h3>⚡ Pay instantly with PayPal</h3>
         <p class="sub">Fastest way to get the templates. Instant download after payment.</p>
-        <a class="paypal-placeholder" id="paypalLink" href="#" onclick="return false;">PayPal checkout — available soon (use form below)</a>
+        <a class="paypal-btn" id="paypalLink" href="https://paypal.me/selfloom/12" target="_blank" rel="noopener">Pay $12 with PayPal</a>
       </div>
 
       <div class="paypal-divider">or enter your details below</div>
@@ -296,8 +296,8 @@ footer a { color: var(--gray-500); }
     <div class="success" id="successState">
       <div class="icon">📬</div>
       <h2>Order received!</h2>
-      <p>We'll send a payment link to <strong id="confirmedEmail" style="color:var(--navy);">you@example.com</strong> — usually within a few hours.</p>
-      <p style="font-size:13px; margin-top:12px;">Check your inbox for an email from <strong>hello@selfloom.ai</strong>. Complete payment → instant download.</p>
+      <p>Thanks — we saved your email as <strong id="confirmedEmail" style="color:var(--navy);">you@example.com</strong>.</p>
+      <p style="font-size:13px; margin-top:12px;">For fastest access, use the PayPal button above. After payment, email <strong>hello@selfloom.ai</strong> with your PayPal transaction ID and we'll send the download.</p>
       <p style="margin-top:16px; font-size:13px;">Questions? <a href="mailto:hello@selfloom.ai" style="color:var(--purple);">hello@selfloom.ai</a></p>
       <a href="./" style="display:inline-block; margin-top:24px; color:var(--purple); font-weight:600; text-decoration:none;">← Back to product page</a>
     </div>
@@ -320,7 +320,7 @@ footer a { color: var(--gray-500); }
 (function() {
   var STORAGE_KEY = 'sc_purchase_intents';
   var VIEW_KEY = 'sc_page_views';
-  var PAYPAL_ME_URL = ''; // <-- SET THIS: e.g. 'https://paypal.me/selfloom/12'
+  var PAYPAL_ME_URL = 'https://paypal.me/selfloom/12';
   var submitted = false;
 
   function trackView() {

@@ -80,7 +80,7 @@ If you use these templates and they don't help you collect a late payment, email
 
 ## Get the Full Pack
 
-**[Buy Now — $9](https://ttcd77.github.io/invoice-chaser-templates/buy.html)** — One-click checkout. Enter your email, we'll send you a payment link within 24 hours. Instant download after payment.
+**[Buy Now — $9](https://ttcd77.github.io/invoice-chaser-templates/buy.html)** — One-click checkout with PayPal. After payment, email `hello@selfloom.ai` with your PayPal transaction ID for the download.
 
 *One-time purchase. Instant download. You'll get a ZIP with all 5 templates, tracking spreadsheet, follow-up schedule, and pricing page copy.*
 
