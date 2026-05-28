@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Invoice Chaser — Freelance Payment Reminders</title>
+<title>Invoice Chaser — Free Invoice Tracker & Payment Reminder Tool for Freelancers</title>
+<meta name="description" content="Free invoice tracking tool for freelancers and small businesses. Track overdue invoices, generate 5-stage reminder emails, and stop chasing late payments. Works offline, no signup required.">
+<meta property="og:title" content="Invoice Chaser — Free Invoice Tracker & Payment Reminders">
+<meta property="og:description" content="Track overdue invoices, generate reminder emails, and stop chasing late payments. Free tool, no signup, works in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ttcd77.github.io/invoice-chaser-templates/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Invoice Chaser — Free Invoice Tracker">
+<meta name="twitter:description" content="Track overdue invoices and generate reminder emails. Free, no signup, works offline.">
 <style>
 :root {
   --navy: #1a1a2e;
@@ -1445,6 +1453,19 @@ window.InvoiceChaser = {
 loadSettings();
 loadInvoices();
 renderAll();
+
+// ── Simple view counter (localStorage) ──
+(function trackView() {
+  try {
+    var VIEW_KEY = 'ic_page_views';
+    var views = JSON.parse(localStorage.getItem(VIEW_KEY) || '{"total":0,"dates":{}}');
+    var today = new Date().toISOString().slice(0,10);
+    views.total++;
+    views.dates[today] = (views.dates[today] || 0) + 1;
+    localStorage.setItem(VIEW_KEY, JSON.stringify(views));
+    console.log('demo tool views:', views.total, '| today:', views.dates[today]);
+  } catch(e) {}
+})();
 
 })();
 </script>

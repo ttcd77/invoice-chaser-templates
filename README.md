@@ -1,6 +1,6 @@
 # Invoice Chaser — Email Templates for Getting Paid Without the Awkwardness
 
-**5 human-toned email templates + tracking spreadsheet + follow-up schedule. $14 one-time.**
+**5 human-toned email templates + tracking spreadsheet + follow-up schedule. $9 one-time.**
 
 **[Try the Free Live Demo →](https://ttcd77.github.io/invoice-chaser-templates/)**
 
@@ -43,9 +43,9 @@ Not sure if templates will help? Here's **Template 1** from the pack — the "Ge
 
 ---
 
-## Why $14?
+## Why $9?
 
-Because one late invoice is worth more than $14, and if these templates help you collect even one payment faster, they've paid for themselves several times over.
+Because one late invoice is worth more than $9, and if these templates help you collect even one payment faster, they've paid for themselves several times over.
 
 Also because I hate the trend of selling "business templates" for $47-$97 when the value is in the words, not the price tag.
 
@@ -74,7 +74,7 @@ Also because I hate the trend of selling "business templates" for $47-$97 when t
 
 ## Money-Back Guarantee
 
-If you use these templates and they don't help you collect a late payment, email me within 30 days. I'll refund the full $14 — no questions, no hoops.
+If you use these templates and they don't help you collect a late payment, email me within 30 days. I'll refund the full $9 — no questions, no hoops.
 
 ---
 

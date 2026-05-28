@@ -3,13 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buy Invoice Chaser Template Pack — $9</title>
+<title>Buy Invoice Chaser Template Pack — $9 One-Time | Selfloom</title>
+<meta name="description" content="5 human-toned email templates, tracking spreadsheet, and follow-up schedule for freelancers and small businesses chasing late payments. $9 one-time, 30-day money-back guarantee.">
+<meta property="og:title" content="Invoice Chaser Template Pack — $9 One-Time">
+<meta property="og:description" content="Stop chasing late payments. 5 email templates, tracking spreadsheet, and follow-up schedule. Made for freelancers and small business owners.">
+<meta property="og:type" content="product">
+<meta property="og:url" content="https://ttcd77.github.io/invoice-chaser-templates/buy.html">
+<meta property="og:site_name" content="Invoice Chaser by Selfloom">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Invoice Chaser Template Pack — $9">
+<meta name="twitter:description" content="5 email templates + tracking spreadsheet + follow-up schedule for chasing late payments without the awkwardness.">
 <style>
 :root {
   --navy: #1a1a2e;
   --navy-light: #16213e;
   --red: #e94560;
   --green: #0f9b5a;
+  --green-light: #e6f7ee;
+  --blue: #0070ba;
+  --blue-light: #e8f1fb;
   --gray-50: #f8f9fa;
   --gray-100: #f1f3f5;
   --gray-200: #e9ecef;
@@ -65,6 +77,35 @@ body {
 .price-sub { color: var(--gray-500); font-size: 14px; margin-top: 4px; }
 .guarantee { color: var(--green); font-size: 13px; margin-top: 8px; font-weight: 500; }
 
+/* PayPal Fast Pay */
+.paypal-section {
+  background: var(--blue-light);
+  border: 2px solid var(--blue);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+.paypal-section h3 { font-size: 16px; color: var(--blue); margin-bottom: 8px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.paypal-section p { font-size: 13px; color: var(--gray-700); margin-bottom: 12px; }
+.paypal-btn {
+  display: inline-block; padding: 14px 32px;
+  background: var(--blue); color: #fff; border: none; border-radius: 8px;
+  font-size: 16px; font-weight: 600; cursor: pointer; font-family: var(--font);
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.paypal-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0, 112, 186, 0.3); }
+.paypal-btn:active { transform: translateY(0); }
+.paypal-coming-soon {
+  display: inline-block; padding: 14px 32px;
+  background: var(--gray-200); color: var(--gray-500); border: none; border-radius: 8px;
+  font-size: 16px; font-weight: 600; font-family: var(--font);
+  cursor: default;
+}
+.paypal-divider { display: flex; align-items: center; gap: 12px; margin: 24px 0; color: var(--gray-500); font-size: 13px; }
+.paypal-divider::before, .paypal-divider::after { content: ""; flex: 1; border-bottom: 1px solid var(--gray-200); }
+
 /* Form */
 .form-group { margin-bottom: 20px; }
 .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: var(--gray-700); }
@@ -72,6 +113,7 @@ body {
 .form-group input:focus { outline: none; border-color: var(--navy); }
 .form-group .hint { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
 
+/* Manual CTA */
 .btn {
   display: block; width: 100%; padding: 16px;
   background: var(--red); color: #fff; border: none; border-radius: 8px;
@@ -115,7 +157,7 @@ footer a { color: var(--gray-500); }
 <div class="header">
   <h1>Invoice Chaser Template Pack</h1>
   <p>5 human-toned email templates, tracking spreadsheet, and follow-up schedule — so you stop chasing and start getting paid.</p>
-  <a href="./" class="back-link">← Back to free demo tool</a>
+  <a href="./" class="back-link">← Free demo: track your invoices now</a>
 </div>
 
 <div class="container">
@@ -124,7 +166,7 @@ footer a { color: var(--gray-500); }
     <!-- Form state -->
     <div class="form-container" id="formContainer">
       <div class="product-title">Invoice Chaser — Complete Template Pack</div>
-      <div class="product-subtitle">Everything you need to follow up on late payments without the awkwardness.</div>
+      <div class="product-subtitle">Everything you need to follow up on late payments without the awkwardness. Use the templates, stop stressing, get paid.</div>
 
       <div class="includes">
         <h3>What's Included</h3>
@@ -133,7 +175,7 @@ footer a { color: var(--gray-500); }
           <li>Invoice tracking spreadsheet (CSV, works in Excel/Sheets/Numbers)</li>
           <li>Follow-up schedule (when to send each, when to escalate)</li>
           <li>Pricing page copy (resell the pack yourself if you want)</li>
-          <li>Instant download — ZIP file delivered by email</li>
+          <li>Instant download — ZIP file delivered after payment</li>
         </ul>
       </div>
 
@@ -143,12 +185,22 @@ footer a { color: var(--gray-500); }
         <div class="guarantee">30-day money-back guarantee — if these templates don't help you collect a late payment, I'll refund every cent.</div>
       </div>
 
+      <!-- PayPal Fast Pay — activate by setting PAYPAL_ME_URL below -->
+      <div class="paypal-section" id="paypalSection">
+        <h3>⚡ Pay instantly with PayPal</h3>
+        <p id="paypalMsg">Fastest way to get the templates. One click, instant download.</p>
+        <!-- This link is replaced when PayPal.me URL is available -->
+        <a class="paypal-coming-soon" id="paypalLink" href="#" onclick="return false;">PayPal checkout coming soon — use email form below for now</a>
+      </div>
+
+      <div class="paypal-divider">or enter your email below</div>
+
       <div id="errorBox" style="display:none; background:#fde8ec; color:#c0392b; padding:12px; border-radius:8px; margin-bottom:16px; font-size:14px;"></div>
 
       <div class="form-group">
         <label for="email">Your email address</label>
         <input type="email" id="email" placeholder="you@example.com" required autocomplete="email">
-        <div class="hint">We'll send your download link to this address. No spam, ever.</div>
+        <div class="hint">Your download link will be sent here. No spam, ever.</div>
       </div>
 
       <div class="form-group">
@@ -157,22 +209,22 @@ footer a { color: var(--gray-500); }
       </div>
 
       <button class="btn" id="buyBtn" onclick="submitOrder()">
-        Buy Now — $9
+        Complete Order — $9
       </button>
 
       <div class="how-it-works">
         <h3>How this works</h3>
         <ol>
-          <li>Enter your email above and click "Buy Now"</li>
-          <li>You'll receive a payment link within 24 hours (usually much faster)</li>
-          <li>After payment, you get an instant download link for the full ZIP pack</li>
+          <li>Enter your email above and click "Complete Order"</li>
+          <li>You'll get a payment link by email (usually within a few hours)</li>
+          <li>After payment, instant download — unzip and start using the templates</li>
         </ol>
       </div>
 
       <div class="trust">
         <div class="trust-item">30-day refund</div>
         <div class="trust-item">No spam</div>
-        <div class="trust-item">Secure manual fulfillment</div>
+        <div class="trust-item">Selfloom guarantee</div>
       </div>
     </div>
 
@@ -185,7 +237,7 @@ footer a { color: var(--gray-500); }
         <h3>What happens next</h3>
         <ol>
           <li>Check your inbox for an email from <strong>hello@selfloom.ai</strong></li>
-          <li>Click the payment link in the email (PayPal, card, or bank transfer)</li>
+          <li>Click the payment link (PayPal, card, or bank transfer)</li>
           <li>Complete payment → receive instant download link</li>
           <li>Unzip and start using the templates today</li>
         </ol>
@@ -204,9 +256,47 @@ footer a { color: var(--gray-500); }
 <script>
 (function() {
   var STORAGE_KEY = 'ic_purchase_intents';
+  var VIEW_KEY = 'ic_page_views';
+  var PAYPAL_ME_URL = ''; // <-- SET THIS: e.g. 'https://paypal.me/selfloom/9'
   var submitted = false;
 
-  // Read existing intents
+  // ---- View counter ----
+  function trackView() {
+    try {
+      var views = JSON.parse(localStorage.getItem(VIEW_KEY) || '{"total":0,"dates":{}}');
+      var today = new Date().toISOString().slice(0,10);
+      views.total++;
+      views.dates[today] = (views.dates[today] || 0) + 1;
+      localStorage.setItem(VIEW_KEY, JSON.stringify(views));
+      console.log('buy.html views:', views.total, '| today:', views.dates[today]);
+    } catch(e) {}
+  }
+
+  // ---- PayPal activation ----
+  function activatePayPal() {
+    if (!PAYPAL_ME_URL) {
+      // PayPal not yet configured — show placeholder
+      document.getElementById('paypalLink').className = 'paypal-coming-soon';
+      document.getElementById('paypalLink').textContent = 'PayPal checkout coming soon — use email form below';
+      document.getElementById('paypalLink').onclick = function() { return false; };
+      document.getElementById('paypalMsg').textContent = 'Fastest way to get the templates. One click, instant download.';
+      return;
+    }
+    // PayPal is configured — show active button
+    var link = document.getElementById('paypalLink');
+    link.className = 'paypal-btn';
+    link.href = PAYPAL_ME_URL;
+    link.textContent = 'Pay $9 with PayPal';
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.onclick = function() {
+      // Track PayPal click in console
+      console.log('PayPal click — redirecting to:', PAYPAL_ME_URL);
+    };
+    document.getElementById('paypalMsg').textContent = 'Pay $9 instantly via PayPal. Download link sent to your PayPal email immediately after payment.';
+  }
+
+  // ---- Purchase intents ----
   function loadIntents() {
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
@@ -214,14 +304,12 @@ footer a { color: var(--gray-500); }
     } catch(e) { return []; }
   }
 
-  // Save a new intent
   function saveIntent(name, email) {
     var intents = loadIntents();
     intents.push({ name: name, email: email, ts: new Date().toISOString() });
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(intents)); } catch(e) {}
   }
 
-  // Expose as global since we use onclick
   window.submitOrder = function() {
     if (submitted) return;
 
@@ -231,7 +319,6 @@ footer a { color: var(--gray-500); }
     var email = emailInput.value.trim();
     var name = nameInput.value.trim();
 
-    // Validate
     if (!email || email.indexOf('@') === -1) {
       errorBox.textContent = 'Please enter a valid email address.';
       errorBox.style.display = 'block';
@@ -244,25 +331,23 @@ footer a { color: var(--gray-500); }
     document.getElementById('buyBtn').disabled = true;
     document.getElementById('buyBtn').textContent = 'Processing...';
 
-    // Save intent
     saveIntent(name, email);
 
-    // Show success
     document.getElementById('confirmedEmail').textContent = email;
     document.getElementById('formContainer').classList.add('hidden');
     document.getElementById('successState').classList.add('show');
 
-    // Also log to console for easy inspection
-    console.log('Purchase intent recorded:', { name: name, email: email, ts: new Date().toISOString() });
-    console.log('All intents:', loadIntents());
+    console.log('PURCHASE INTENT:', { name: name, email: email, ts: new Date().toISOString() });
+    console.log('Total intents:', loadIntents().length);
   };
 
-  // Enter key submits
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && !submitted) {
-      submitOrder();
-    }
+    if (e.key === 'Enter' && !submitted) submitOrder();
   });
+
+  // Init
+  trackView();
+  activatePayPal();
 })();
 </script>
 
