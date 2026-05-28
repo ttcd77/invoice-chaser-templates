@@ -523,6 +523,30 @@ body {
   .btn { padding: 8px 14px; font-size: 0.8rem; }
   .sender-input { width: 130px; }
 }
+
+/* ── Print Styles ── */
+@media print {
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .header, .toolbar, .modal-overlay, .toast-container, #importFileInput,
+  .header-actions, .btn, .stage-actions, .cta-banner, .reminder-stages,
+  .invoice-table th:last-child, .invoice-table td:last-child { display: none !important; }
+  .container { max-width: 100%; padding: 0; margin: 0; }
+  .stats-bar { grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; break-inside: avoid; }
+  .stat-card { box-shadow: none; border: 1px solid #ccc; border-left-width: 4px; padding: 12px 16px; }
+  .invoice-table-wrapper { overflow: visible; }
+  .invoice-table { width: 100%; border-collapse: collapse; font-size: 10pt; }
+  .invoice-table th { background: #eee !important; color: #000; padding: 8px 10px; text-align: left; border: 1px solid #ccc; }
+  .invoice-table td { padding: 7px 10px; border: 1px solid #ddd; }
+  .invoice-table tr.row-overdue { background: #fff5f5 !important; }
+  .badge { border: 1px solid #999; padding: 2px 8px; border-radius: 3px; font-size: 9pt; color: #000; }
+  .print-header { display: block !important; text-align: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 3px double #333; }
+  .print-header h2 { font-size: 18pt; margin-bottom: 4px; color: #000; }
+  .print-header .print-date { font-size: 10pt; color: #555; }
+  .print-footer { display: block !important; text-align: center; margin-top: 32px; padding-top: 16px; border-top: 2px solid #ddd; font-size: 9pt; color: #555; }
+  .print-footer a { color: #4a90d9; text-decoration: underline; }
+  .print-footer strong { display: block; margin-bottom: 4px; font-size: 11pt; color: #000; }
+  @page { margin: 1.5cm; }
+}
 </style>
 </head>
 <body>
@@ -555,6 +579,7 @@ body {
       <span style="font-size:0.82rem;color:var(--gray-500);font-weight:500;" id="invoiceCount">0 invoices</span>
     </div>
     <div class="toolbar-right">
+      <button class="btn btn-outline btn-sm" id="btnPrintReport">Print Report</button>
       <button class="btn btn-outline btn-sm" id="btnExportCSV">Export CSV</button>
     </div>
   </div>
@@ -1341,6 +1366,75 @@ function exportJSON() {
   showToast('Invoices exported as JSON.', 'success');
 }
 
+// ── Print Report ──
+function printReport() {
+  if (invoices.length === 0) { showToast('No invoices to include in report.', 'error'); return; }
+
+  const sender = $('#senderName').value.trim() || 'Freelancer';
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+  // Build stats
+  let totalOutstanding = 0, overdueCount = 0, pendingCount = 0, paidThisMonth = 0;
+  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+  invoices.forEach(inv => {
+    const st = getInvoiceStatus(inv);
+    if (st === 'paid') { if (parseDate(inv.paidDate) >= monthStart) paidThisMonth += inv.amount; }
+    else { totalOutstanding += inv.amount; if (st === 'overdue') overdueCount++; else pendingCount++; }
+  });
+
+  // Build table rows
+  const rows = [...invoices].sort((a, b) => parseDate(a.dueDate) - parseDate(b.dueDate)).map(inv => {
+    const st = getInvoiceStatus(inv);
+    const badge = st === 'paid' ? 'Paid' : st === 'overdue' ? 'Overdue' : st === 'due-soon' ? 'Due Soon' : 'Pending';
+    const daysText = getDaysText(inv);
+    return `<tr class="${st === 'overdue' ? 'row-overdue' : ''}">
+      <td>${escapeHtml(inv.clientName)}${inv.company ? ' · ' + escapeHtml(inv.company) : ''}</td>
+      <td>${escapeHtml(inv.invoiceNumber)}</td>
+      <td>${formatCurrency(inv.amount, inv.currency)}</td>
+      <td>${formatDate(inv.dueDate)}</td>
+      <td><span class="badge">${badge}</span></td>
+      <td>${daysText}</td>
+    </tr>`;
+  }).join('');
+
+  // Build print container
+  const printDiv = document.createElement('div');
+  printDiv.id = 'printContainer';
+  printDiv.innerHTML = `
+    <div class="print-header">
+      <h2>Invoice Chaser Report</h2>
+      <div class="print-date">Generated ${dateStr} for ${escapeHtml(sender)}</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px;">
+        <div class="stat-card"><div class="stat-label">Total Outstanding</div><div class="stat-value blue">${formatCurrency(totalOutstanding, 'USD')}</div></div>
+        <div class="stat-card"><div class="stat-label">Overdue Invoices</div><div class="stat-value red">${overdueCount}</div></div>
+        <div class="stat-card"><div class="stat-label">Pending</div><div class="stat-value yellow">${pendingCount}</div></div>
+        <div class="stat-card"><div class="stat-label">Paid This Month</div><div class="stat-value green">${formatCurrency(paidThisMonth, 'USD')}</div></div>
+      </div>
+    </div>
+    <table class="invoice-table">
+      <thead><tr>
+        <th>Client</th><th>Invoice #</th><th>Amount</th><th>Due Date</th><th>Status</th><th>Days</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div class="print-footer">
+      <strong>Want to automate your invoice follow-ups?</strong>
+      Get the Invoice Chaser Template Pack — 5 email templates + tracking spreadsheet + schedule.<br>
+      Visit: <a href="https://ttcd77.github.io/invoice-chaser-templates/buy.html">ttcd77.github.io/invoice-chaser-templates/buy.html</a>
+    </div>
+  `;
+  document.body.appendChild(printDiv);
+
+  window.print();
+
+  // Clean up after print dialog closes
+  setTimeout(() => {
+    const el = document.getElementById('printContainer');
+    if (el) el.remove();
+  }, 500);
+}
+
 function exportCSV() {
   if (invoices.length === 0) { showToast('No invoices to export.', 'error'); return; }
   const headers = ['Client Name', 'Company', 'Invoice Number', 'Amount', 'Currency', 'Issue Date', 'Due Date', 'Service Description', 'Client Email', 'Status', 'Paid Date'];
@@ -1403,6 +1497,7 @@ $('#btnCancelForm').addEventListener('click', () => closeModal('#invoiceModalOve
 $('#btnCloseModal').addEventListener('click', () => closeModal('#invoiceModalOverlay'));
 $('#btnCloseReminder').addEventListener('click', () => closeModal('#reminderModalOverlay'));
 $('#btnExport').addEventListener('click', exportJSON);
+$('#btnPrintReport').addEventListener('click', printReport);
 $('#btnExportCSV').addEventListener('click', exportCSV);
 $('#btnImport').addEventListener('click', () => $('#importFileInput').click());
 $('#importFileInput').addEventListener('change', (e) => { if (e.target.files[0]) importJSON(e.target.files[0]); e.target.value = ''; });
